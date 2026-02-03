@@ -1,9 +1,16 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Navbar from './Components/Navbar'
+import Home from './Pages/Home'
 
 const App = () => {
   return (
-    <div className='text-3xl font-bold underline text-blue-600'>
-      Tailwind test
+    <div>
+      <Navbar/>
+
+      <Routes>
+        <Route path='/' element={<Home/>} />
+      </Routes>
     </div>
   )
 }
