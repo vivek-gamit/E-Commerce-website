@@ -5,7 +5,7 @@ import card from '../assets/images/Vector.png'
 
 const Navbar = () => {
   return (
-    <div className='flex justify-between mx-4 mt-7'>
+    <div className='flex justify-between mx-4 mt-7 px-6'>
       <div className='font-sans text-3xl font-bold'>Fashion</div>
 
       <ul className='flex text-lg'>
