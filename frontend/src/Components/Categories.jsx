@@ -42,15 +42,15 @@ const Categories = () => {
                           
                             <div className={`relative overflow-hidden transition-all duration-700 ease-in-out h-full border rounded-full shadow-sm
                                             ${activeIndex === index 
-                                                ? 'w-55 bg-black border-black text-white' 
-                                                : 'w-12 bg-white border-gray-200 text-black'}`}>
+                                                ? 'w-59 bg-black border-black text-white' 
+                                                : 'w-13.5 bg-white border-gray-200 text-black'}`}>
 
                                 <span className={`absolute left-5 top-1/2 -translate-y-1/2 font-medium text-sm transition-all duration-700 ease-out whitespace-nowrap
                                                ${activeIndex === index ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'}`}>
                                     View All
                                 </span>
 
-                                <div className={`absolute right-1 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-700
+                                <div className={`absolute  top-1/2 right-1 -translate-y-1/2 w-10.5 h-10.5 rounded-full flex items-center justify-center transition-all duration-700
                                                 ${activeIndex === index ? 'bg-white' : 'bg-black'}`}>
                                     <img
                                         src={arrow}
@@ -61,7 +61,7 @@ const Categories = () => {
                                 </div>
                             </div>
 
-                           
+                   
                             <div className={`overflow-hidden transition-all duration-700 ease-in-out h-full flex items-center justify-center border rounded-full px-5 shadow-sm
                                             ${activeIndex === index 
                                                 ? 'w-[145px] border-black' 
