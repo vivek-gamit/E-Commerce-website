@@ -13,13 +13,13 @@ const Banner_2 = () => {
                       </div>
       
                       {/* Parent Container using your centering logic */}
-                      <div className='absolute leading-none right-15 bottom-22  w-[20rem]'>
+                      <div className='absolute leading-none right-15 bottom-22  w-100'>
       
                           {/* Use a button or a div with 'flex' for perfect centering */}
                           <button className='w-full bg-white text-black py-4 flex items-center justify-center 
-                             instrument-serif-regular text-2xl uppercase tracking-tight shadow-sm
+                             instrument-serif-regular text-2xl uppercase shadow-sm
                              hover:bg-black hover:text-white transition-all duration-500 font-normal'>
-                              all Products
+                              SEE OUR VALUES
                           </button>
                       </div>
                   </div>

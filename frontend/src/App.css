@@ -10,3 +10,36 @@
   font-weight: 400;
   font-style: italic;
 }
+
+/* Container that holds the moving row */
+.marquee-container {
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  white-space: nowrap;
+}
+
+/* The actual moving row */
+.marquee-content {
+  display: flex;
+  animation: marquee 20s linear infinite;
+}
+
+/* Pause animation on hover */
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+/* Keyframes for the right-to-left scroll */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-150%);
+  }
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}

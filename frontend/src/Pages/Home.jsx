@@ -4,6 +4,7 @@ import Popular_product from '../Components/Popular_product'
 import Banner_1 from '../Components/Banner_1'
 import Component_3 from '../Components/Component_3'
 import Banner_2 from '../Components/Banner_2'
+import Association from '../Components/Association'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Banner_1/>
       <Component_3/>
       <Banner_2/>
+      <Association/>
 
     </div>
   )
