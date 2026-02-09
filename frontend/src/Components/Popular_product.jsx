@@ -35,7 +35,7 @@ const Popular_product = () => {
 
     return (
         <div className="px-10 py-16">
-            <div className='font-serif italic text-3xl leading-none mb-10'>Popular Products</div>
+            <div className='font-serif italic text-3xl leading-none mb-10 font-stretch-200%'>Popular Products</div>
 
 
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6 w-full'>
