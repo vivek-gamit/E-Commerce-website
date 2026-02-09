@@ -35,7 +35,7 @@ const Popular_product = () => {
 
     return (
         <div className="px-10 py-16">
-            <div className='font-serif italic text-3xl leading-none mb-10 font-stretch-200%'>Popular Products</div>
+            <div className='instrument-serif-regular-italic text-4xl leading-none mb-10'>Popular Products</div>
 
 
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6 w-full'>
@@ -48,7 +48,7 @@ const Popular_product = () => {
 
 
                             <div className='absolute top-4 left-4 z-20'>
-                                <span className='bg-white px-3 py-1 font-serif italic text-xl shadow-sm'>Popular</span>
+                                <span className='bg-white px-3 py-1 instrument-serif-regular text-xl shadow-sm'>Popular</span>
                             </div>
 
 
@@ -76,7 +76,7 @@ const Popular_product = () => {
                             <div className='absolute bottom-4 left-0 w-full px-4 h-[45px] opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out'>
 
                                 {/* 2. Using block and w-full makes it fill the space allowed by the parent's padding */}
-                                <span className='h-[40px] w-full bg-white/90 font-serif text-xl shadow-md text-center flex items-center justify-center'>
+                                <span className='h-[40px] w-full bg-white/90 font-sans text-xl shadow-md text-center flex items-center justify-center'>
                                     View Product
                                 </span>
                             </div>
@@ -84,11 +84,11 @@ const Popular_product = () => {
 
                         {/* TEXT CONTAINER */}
                         <div className='flex justify-between items-end mt-4 px-1'>
-                            <h3 className='font-serif text-[22px] tracking-tight m-0 leading-none'>
+                            <h3 className='instrument-serif-regular text-[24px]  m-0 leading-none'>
                                 {item.name}
                             </h3>
-                            <p className="font-serif text-[22px] tracking-tighter leading-none m-0">
-                                {item.price}₹ <span className="text-lg ml-1">IND</span>
+                            <p className="instrument-serif-regular text-[22px] leading-none m-0">
+                                {item.price}₹ <span className="text-2xl ml-1 instrument-serif-regular">IND</span>
                             </p>
                         </div>
                     </div>

@@ -9,7 +9,7 @@ const Categories = () => {
     return (
         <div className="px-10 py-16">
             <div className='flex justify-between mb-10 items-baseline items-end'>
-                <h2  className='font-serif italic text-3xl leading-none'>Shop By Categories</h2>
+                <h2  className='instrument-serif-regular-italic text-4xl leading-none'>Shop By Categories</h2>
                 <p className='text-xs md:text-sm uppercase tracking-widest text-right leading-relaxed'>
                     ESSENTIAL SILHOUETTES, NATURAL TEXTURES, <br /> AND EFFORTLESS LAYERING FOR EVERY SEASON
                 </p>
@@ -64,8 +64,8 @@ const Categories = () => {
                    
                             <div className={`overflow-hidden transition-all duration-700 ease-in-out h-full flex items-center justify-center border rounded-full px-5 shadow-sm
                                             ${activeIndex === index 
-                                                ? 'w-[145px] border-black' 
-                                                : 'w-[200px] bg-white border-gray-200'}`}>
+                                                ? 'w-36.25 border-black' 
+                                                : 'w-50 bg-white border-gray-200'}`}>
                                 <span className="text-sm font-medium whitespace-nowrap text-center">
                                     {item.name}
                                 </span>
