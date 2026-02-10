@@ -18,7 +18,7 @@ const Association = () => {
         { id: 6, name: "Rolex", img: rolex_img },
     ];
     return (
-        <div >
+        <div className=' mb-30'>
             <div className='flex justify-between mb-10 items-baseline px-10 py-16'>
                 <h2 className='instrument-serif-regular-italic text-4xl leading-none'>As Seen On Community</h2>
                 <p className='text-xs md:text-sm uppercase tracking-widest text-right leading-relaxed'>
@@ -40,7 +40,7 @@ const Association = () => {
                             <img
                                 src={item.img}
                                 alt={item.name}
-                                className='h-112.5 w-auto rounded-sm object-cover block'
+                                className='h-102.5 w-auto rounded-sm object-cover block'
                             />
 
 

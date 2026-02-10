@@ -22,7 +22,7 @@
 /* The actual moving row */
 .marquee-content {
   display: flex;
-  animation: marquee 20s linear infinite;
+  animation: marquee 15s linear infinite;
 }
 
 /* Pause animation on hover */
@@ -42,4 +42,7 @@
 
 .marquee-content:hover {
   animation-play-state: paused;
+}
+.fashion-font {
+  font-family: 'Playfair Display', serif;
 }

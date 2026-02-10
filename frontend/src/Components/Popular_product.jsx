@@ -73,10 +73,10 @@ const Popular_product = () => {
                             />
 
                             {/* 1. Use left-0 w-full + padding to create the 'gaps' on sides and bottom */}
-                            <div className='absolute bottom-4 left-0 w-full px-4 h-[45px] opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out'>
+                            <div className='absolute bottom-4 left-0 w-full px-4 h-11.25 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out'>
 
                                 {/* 2. Using block and w-full makes it fill the space allowed by the parent's padding */}
-                                <span className='h-[40px] w-full bg-white/90 font-sans text-xl shadow-md text-center flex items-center justify-center'>
+                                <span className='h-10 w-full bg-white/90 font-sans text-xl shadow-md text-center flex items-center justify-center'>
                                     View Product
                                 </span>
                             </div>

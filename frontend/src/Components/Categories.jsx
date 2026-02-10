@@ -8,7 +8,7 @@ const Categories = () => {
 
     return (
         <div className="px-10 py-16">
-            <div className='flex justify-between mb-10 items-baseline items-end'>
+            <div className='flex justify-between mb-10 items-end'>
                 <h2  className='instrument-serif-regular-italic text-4xl leading-none'>Shop By Categories</h2>
                 <p className='text-xs md:text-sm uppercase tracking-widest text-right leading-relaxed'>
                     ESSENTIAL SILHOUETTES, NATURAL TEXTURES, <br /> AND EFFORTLESS LAYERING FOR EVERY SEASON
@@ -18,7 +18,7 @@ const Categories = () => {
            
             <div 
                 onMouseLeave={() => setActiveIndex(0)} 
-                className='flex flex-col lg:flex-row gap-3 h-[600px] lg:h-[766px] w-full'
+                className='flex flex-col lg:flex-row gap-3 h-150 lg:h-191.5 w-full'
             >
                 {categories.map((item, index) => (
                     <div
@@ -28,7 +28,7 @@ const Categories = () => {
                                    ${activeIndex === index ? 'flex-[1.5]' : 'flex-1'}`}
                     >
                         {/* IMAGE CONTAINER */}
-                        <div className='relative flex-grow overflow-hidden rounded-3xl mb-4'>
+                        <div className='relative grow overflow-hidden rounded-3xl mb-4'>
                             <img
                                 className='absolute inset-0 w-full h-full object-cover transition-transform duration-700' 
                                 src={item.image}
