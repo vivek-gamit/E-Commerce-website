@@ -7,10 +7,12 @@ import Banner_2 from '../Components/Banner_2'
 import Association from '../Components/Association'
 import Video_page from '../Components/Video_page'
 import Sticky from '../Components/Sticky'
+import Hero_section from '../Components/Hero_section'
 
 const Home = () => {
   return (
     <div>
+      <Hero_section/>
       <Categories/>
       <Popular_product/>
       <Banner_1/>

@@ -7,7 +7,7 @@ const Categories = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <div className="px-10 py-16">
+        <div className="px-10 ">
             <div className='flex justify-between mb-10 items-end'>
                 <h2  className='instrument-serif-regular-italic text-4xl leading-none'>Shop By Categories</h2>
                 <p className='text-xs md:text-sm uppercase tracking-widest text-right leading-relaxed'>

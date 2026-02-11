@@ -31,8 +31,8 @@ const Navbar = () => {
       </ul>
 
       <div className='flex gap-1.5'>
-        <img className='w-7 h-7' src={heart} alt="like icon" />
-        <img className='w-7 h-7' src={card} alt="" />
+        <img className='w-9 h-9 mr-4' src={heart} alt="like icon" />
+        <img className='w-9 h-9' src={card} alt="" />
       </div>
     </div>
   )
