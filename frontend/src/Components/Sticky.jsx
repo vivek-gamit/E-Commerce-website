@@ -49,19 +49,19 @@ const Sticky = () => {
             {/* FLOATING CARDS SECTION */}
             {/* Added a negative margin-top so cards start appearing while text is visible */}
             <div className='relative z-10 w-full px-10 flex flex-col items-center -mt-[50vh] pb-[20vh]'>
-                <img src={Card_1} alt="Card_1" className='w-[340px] h-[240px] object-contain mb-20 mt-100' />
+                <img src={Card_1} alt="Card_1" className='w-85 h-60 object-contain mb-20 mt-100' />
 
                 <div className='flex justify-around w-full max-w-6xl mb-20'>
-                    <img src={Card_2} alt="Card_2" className='w-[340px] h-[240px] mt-20 mr-100' />
-                    <img src={Card_3} alt="Card_3" className='w-[340px] h-[240px] mt-20' />
+                    <img src={Card_2} alt="Card_2" className='w-85 h-60 mt-20 mr-100' />
+                    <img src={Card_3} alt="Card_3" className='w-85 h-60 mt-20' />
                 </div>
 
                 <div className='flex justify-around w-full max-w-6xl mb-20'>
-                    <img src={Card_4} alt="Card_4" className='w-[340px] h-[240px] mt-20' />
-                    <img src={Card_5} alt="Card_5" className='w-[340px] h-[240px] mt-20' />
+                    <img src={Card_4} alt="Card_4" className='w-85 h-60 mt-20' />
+                    <img src={Card_5} alt="Card_5" className='w-85 h-60 mt-20' />
                 </div>
 
-                <img src={Card_6} alt="Card_6" className='w-[340px] h-[240px] mb-20 mt-20' />
+                <img src={Card_6} alt="Card_6" className='w-85 h-60 mb-20 mt-20' />
             </div>
 
             {/* POPULAR PRODUCTS SECTION */}

@@ -9,7 +9,7 @@ const Video_page = () => {
       <div className='relative h-screen flex items-center justify-center'>
         <video 
           src={fashion_v1} 
-          className='h-[235px] w-auto object-cover transition-all ease-in-out duration-3000 group-hover:w-auto group-hover:h-full group-hover:scale-[1.5]'
+          className='h-58.75 w-auto object-cover transition-all ease-in-out duration-3000 group-hover:w-auto group-hover:h-full group-hover:scale-[1.5]'
           autoPlay
           muted
           loop
