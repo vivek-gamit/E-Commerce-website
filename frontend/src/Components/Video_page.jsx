@@ -9,7 +9,7 @@ const Video_page = () => {
       <div className='relative h-screen flex items-center justify-center'>
         <video 
           src={fashion_v1} 
-          className='h-58.75 w-auto object-cover transition-all ease-in-out duration-3000 group-hover:w-auto group-hover:h-full group-hover:scale-[1.5]'
+          className='h-[235px] w-auto object-cover transition-all ease-in-out duration-3000 group-hover:w-auto group-hover:h-full group-hover:scale-[1.5]'
           autoPlay
           muted
           loop
@@ -17,7 +17,7 @@ const Video_page = () => {
         />
       </div>
 
-      <div className='absolute text-white flex justify-around top-1/2 w-full items-center text-bold text-4xl fashion-font'>
+      <div className='absolute text-white flex justify-around top-1/2 w-full items-center text-bold text-4xl font-melodrama'>
         <h2>FASHION</h2>
         <h2>FOR EVERYONE</h2>
       </div>

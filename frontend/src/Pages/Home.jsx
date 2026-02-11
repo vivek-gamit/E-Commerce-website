@@ -6,6 +6,7 @@ import Component_3 from '../Components/Component_3'
 import Banner_2 from '../Components/Banner_2'
 import Association from '../Components/Association'
 import Video_page from '../Components/Video_page'
+import Sticky from '../Components/Sticky'
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <Banner_2/>
       <Association/>
       <Video_page/>
+      <Sticky/>
     </div>
   )
 }

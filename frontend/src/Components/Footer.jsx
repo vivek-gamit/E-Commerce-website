@@ -8,7 +8,7 @@ const Footer = () => {
                 Fashion
             </h1>
 
-            <div className='flex flex-col sm:grid grid-cols-[2fr_2fr_2fr_3fr] text-white gap-14 my-10  mt-50 text-sm md:mx-8 mx-5'>
+            <div className='flex flex-col sm:grid grid-cols-[2fr_2fr_2fr_3fr] text-white gap-14 my-10  mt-6 text-sm md:mx-8 mx-5'>
 
                 <div className=' mt-10'>
                     <p className='instrument-serif-regular text-2xl mb-4'>Shop</p>
