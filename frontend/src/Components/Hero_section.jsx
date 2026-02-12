@@ -8,7 +8,6 @@ import img_5 from '../assets/images/hero_section/img_5.jpg'
 import img_6 from '../assets/images/hero_section/img_6.jpg'
 
 const Hero_section = () => {
-    // Array to manage the unique offsets and rotations for the "boom" spread
     const cards = [
         { img: img_1, x: -480, y: 34, rotate: -9 },
         { img: img_2, x: -280, y: -10, rotate: -5 },
@@ -18,63 +17,85 @@ const Hero_section = () => {
         { img: img_6, x: 480, y: 33, rotate: 10 },
     ];
 
+    const topTextVariants = {
+        hidden: { opacity: 0, y: 50, scale: 0.9 },
+        visible: {
+            opacity: 1, y: 0, scale: 1,
+            transition: { duration: 1, ease: "easeOut", delay: 1 }
+        }
+    };
+
+    const bottomTextVariants = {
+        hidden: { opacity: 0, y: -50, scale: 0.9 },
+        visible: {
+            opacity: 1, y: 0, scale: 1,
+            transition: { duration: 1, ease: "easeOut", delay: 1 }
+        }
+    };
+
     return (
-        <div className='w-full min-h-screen bg-white overflow-hidden flex flex-col items-center pt-20'>
+        <div className='w-full min-h-screen bg-white flex flex-col items-center pt-7 relative z-0'>
             {/* Header Text */}
-            <div className='text-center '>
-                <h2 className='text-2xl instrument-sans mb-3'>The Ultimate</h2>
-                <h2 className='text-6xl instrument-sans'>COLLECTIONS</h2>
-            </div>
+            <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={topTextVariants}
+                className='text-center mb-6 z-20'
+            >
+                <h2 className='text-2xl instrument-sans mb-1'>The Ultimate</h2>
+                <h2 className='text-5xl instrument-sans tracking-tight'>COLLECTIONS</h2>
+            </motion.div>
 
-
-
-            {/* Cards Container */}
-            <div className='relative w-full h-[450px] flex items-center justify-center'>
+            {/* Cards Container - Forced Z-Index and Relative Height */}
+            <div className='relative w-full h-[450px] flex items-center justify-center z-10'>
                 {cards.map((card, index) => (
                     <motion.div
                         key={index}
-                        initial={{ x: 0, y: 0, rotate: 0, opacity: 0 }} // Starts stacked
-                        whileInView={{
-                            x: card.x,
-                            y: card.y,
-                            rotate: card.rotate,
-                            opacity: 10
+                        initial={{ x: 0, y: 400, rotate: 0, opacity: 0 }} // Match the first keyframe
+                        animate={{
+                            // 1. Start at 0 | 2. Stay at 0 | 3. Move to final X
+                            x: [0, 0, 0, card.x],
+                            // 1. Start at 400 | 2. Rise to 0 | 3. Stay at 0 | 4. Move to final Y
+                            y: [400, 0, 0, card.y],
+                            rotate: [0, 0, 0, card.rotate],
+                            opacity: [0, 1, 1, 1]
                         }}
-                        viewport={{ once: true }}
                         transition={{
-                            type: "spring",
-                            stiffness: 50,
-                            damping: 20,
-                            delay: 2 + index * 0.08
+                            duration: 2, // Slightly faster for better 'snap'
+                            ease: "easeInOut",
+                            // 0% to 30%: Rise | 30% to 60%: Pause | 60% to 100%: Spread
+                            times: [0, 0.3, 0.6, 1],
+                            delay: index * 0.05
                         }}
-                        /* The first card (index 0) gets the highest zIndex (e.g., 60).
-                           Each card after it gets a lower value so it tucks behind.
-                        */
-                        style={{ zIndex: cards.length - index }}
+                        style={{ zIndex: 100 + (cards.length - index) }}
                         className='absolute'
                     >
                         <img
                             src={card.img}
-                            alt={`img_${index + 1}`}
-                            className='h-[300px] w-[240px] object-cover rounded-[2rem]'
+                            alt={`img_${index}`}
+                            className='h-[300px] w-[240px] object-cover rounded-[2rem] shadow-2xl'
                         />
                     </motion.div>
                 ))}
             </div>
 
             {/* Bottom Content */}
-            <div className='text-center mt-2 px-4'>
-                <h2 className='text-black max-w-2xl mx-auto leading-relaxed text-lg font-semibold'>
+            <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={bottomTextVariants}
+                className='text-center px-4 z-20'
+            >
+                <h2 className='text-black max-w-2xl mx-auto leading-relaxed text-lg font-medium'>
                     Fresh styles made for modern lifestyles. Easy fits, bold details, and effortless
                     comfort perfect for every day, every plan.
                 </h2>
-
-                <div className='mt-3'>
-                    <button className='bg-black text-white px-13 py-2 rounded-full font-semibold hover:scale-105 transition-transform text-md'>
-                        Show Now
+                <div className='mt-2'>
+                    <button className='bg-black text-white px-10 py-3 rounded-full font-semibold shadow-lg'>
+                        Shop Now
                     </button>
                 </div>
-            </div>
+            </motion.div>
         </div>
     )
 }
