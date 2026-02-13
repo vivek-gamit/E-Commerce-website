@@ -12,7 +12,7 @@ const Navbar = () => {
             opacity: 1,
             y: 0,
             transition: {
-                duration: 1.2,
+                duration: 1.5,
                 ease: [0.22, 1, 0.36, 1], // Premium smooth deceleration
                 staggerChildren: 0.1,
                 delayChildren: 0.1
