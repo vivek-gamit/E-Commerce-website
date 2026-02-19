@@ -10,7 +10,10 @@ import glasses_1 from '../assets/images/component_2/glasses_1.png'
 import glasses_2 from '../assets/images/component_2/glasses_2.png'
 import watch_1 from '../assets/images/component_2/watch_1.png'
 import watch_2 from '../assets/images/component_2/watch_2.png'
-
+import Taupe_Bag_1 from '../assets/images/product/Taupe_Bag_1.png'
+import Taupe_Bag_2 from '../assets/images/product/Taupe_Bag_2.png'
+import Taupe_Bag_3 from '../assets/images/product/Taupe_Bag_3.png'
+import Taupe_Bag_4 from '../assets/images/product/Taupe_Bag_4.png'
 
 // 2. Export the array of objects
 export const categories = [
@@ -71,6 +74,26 @@ export const popular_product = [
     
 ];
 
-export const icons = {
-    
-};
+export const Product = [
+    {
+        id:1,
+        name:'Taupe Bag',
+        image:Taupe_Bag_1
+    },
+    {
+        id:2,
+        name:'Taupe Bag',
+        image:Taupe_Bag_2
+    },
+    {
+        id:3,
+        name:'Taupe Bag',
+        image:Taupe_Bag_3
+    },
+    {
+        id:4,
+        name:'Taupe Bag',
+        image:Taupe_Bag_4
+    }
+]
+

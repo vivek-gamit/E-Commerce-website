@@ -6,32 +6,18 @@ import glasses_1 from '../assets/images/component_2/glasses_1.png'
 import glasses_2 from '../assets/images/component_2/glasses_2.png'
 import watch_1 from '../assets/images/component_2/watch_1.png'
 import watch_2 from '../assets/images/component_2/watch_2.png'
+import { useNavigate } from 'react-router-dom'
 
 const Popular_product = () => {
 
-    const products = [
-        {
-            id: 1,
-            name: "Taupe Bag",
-            price: "4,999",
-            mainImg: bag_1,
-            hoverImg: bag_2,
-        },
-        {
-            id: 2,
-            name: "Taupe Bag",
-            price: "4,999",
-            mainImg: glasses_1,
-            hoverImg: glasses_2,
-        },
-        {
-            id: 3,
-            name: "Taupe Bag",
-            price: "4,999",
-            mainImg: watch_1,
-            hoverImg: watch_2,
-        }
-    ];
+    const navigate = useNavigate()
+
+ const all_products = [
+    { id: 1, name: "Taupe Bag", category: "bags", price: "4,999", mainImg: bag_1, hoverImg: bag_2 },
+    { id: 2, name: "Sunset Glasses", category: "glasses", price: "2,499", mainImg: glasses_1, hoverImg: glasses_2 },
+    { id: 3, name: "Elite Watch", category: "watches", price: "8,999", mainImg: watch_1, hoverImg: watch_2 },
+    // Add all your items here...
+];
 
     return (
         <div className="px-10 py-16">
@@ -60,6 +46,7 @@ const Popular_product = () => {
 
 
                             <img
+    
                                 src={item.mainImg}
                                 className='absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-100 group-hover:opacity-0'
                                 alt={item.name}
@@ -67,6 +54,7 @@ const Popular_product = () => {
 
                             {/* HOVER IMAGE (Fades in on hover) */}
                             <img
+                                onClick={()=> {navigate('/product_Dasbord')}}
                                 src={item.hoverImg} // This uses the hoverImg from the array above
                                 className='absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100'
                                 alt={`${item.name} hover`}
@@ -76,7 +64,7 @@ const Popular_product = () => {
                             <div className='absolute bottom-4 left-0 w-full px-4 h-11.25 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out'>
 
                                 {/* 2. Using block and w-full makes it fill the space allowed by the parent's padding */}
-                                <span className='h-10 w-full bg-white/90 font-sans text-xl shadow-md text-center flex items-center justify-center'>
+                                <span  onClick={()=> {navigate('/product')}} className='h-10 w-full bg-white/90 font-sans text-xl shadow-md text-center flex items-center justify-center'>
                                     View Product
                                 </span>
                             </div>
