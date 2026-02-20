@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import heart from '../assets/images/line-md_heart.png'
 import {products} from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
+import { small_cards } from '../assets/assets'
 
 const Popular_product = () => {
 
@@ -43,6 +44,7 @@ const Popular_product = () => {
                             {/* HOVER IMAGE (Fades in on hover) */}
                             <img
                                 onClick={()=> {navigate(`/product_Dasbord/${item.id}`)}}
+                        
                                 src={item.hoverImg} // This uses the hoverImg from the array above
                                 className='absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100'
                                 alt={`${item.name} hover`}
@@ -52,9 +54,9 @@ const Popular_product = () => {
                             <div className='absolute bottom-4 left-0 w-full px-4 h-11.25 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out'>
 
                                 {/* 2. Using block and w-full makes it fill the space allowed by the parent's padding */}
-                                <span  onClick={()=> {navigate(`/product/${item.category}`)}} className='h-10 w-full bg-white/90 font-sans text-xl shadow-md text-center flex items-center justify-center'>
+                                <h1  onClick={()=> {navigate(`/product/${item.category}`)}} className='pt-1 pb-1 w-full bg-white font-sans text-xl shadow-md text-center'>
                                     View Product
-                                </span>
+                                </h1>
                             </div>
                         </div>
 
