@@ -10,90 +10,35 @@ import glasses_1 from '../assets/images/component_2/glasses_1.png'
 import glasses_2 from '../assets/images/component_2/glasses_2.png'
 import watch_1 from '../assets/images/component_2/watch_1.png'
 import watch_2 from '../assets/images/component_2/watch_2.png'
-import Taupe_Bag_1 from '../assets/images/product/Taupe_Bag_1.png'
-import Taupe_Bag_2 from '../assets/images/product/Taupe_Bag_2.png'
-import Taupe_Bag_3 from '../assets/images/product/Taupe_Bag_3.png'
-import Taupe_Bag_4 from '../assets/images/product/Taupe_Bag_4.png'
+import watch_3 from '../assets/images/product/watch/watch_3.png'
+import hat_1 from '../assets/images/hat/hat_1.png'
+import hat_2 from '../assets/images/hat/hat_2.png'
+import hat_3 from '../assets/images/hat/hat_3.png'
 
-// 2. Export the array of objects
 export const categories = [
-    {
-        id: 1,
-        name: 'Casual Wears',
-        image: Casual_Wears
-    },
-    {
-        id: 2,
-        name: 'Suits',
-        image: Suits
-    },
-    {
-        id: 3,
-        name: 'Party Wears', // Women
-        image: Party_Wears_women
-    },
-    {
-        id: 4,
-        name: 'Party Wears', // Men
-        image: Party_Wears_men
-    },
-    {
-        id: 5,
-        name: 'Sports Wears',
-        image: Sports_Wears
-    }
+    { id: 1, name: 'Casual Wears', image: Casual_Wears },
+    { id: 2, name: 'Suits', image: Suits },
+    { id: 3, name: 'Party Wears', image: Party_Wears_women },
+    { id: 4, name: 'Party Wears', image: Party_Wears_men },
+    { id: 5, name: 'Sports Wears', image: Sports_Wears }
 ];
 
 
-export const popular_product = [
+export const products = [
+    { id: 1, name: "Taupe Bag", category: "bags", price: "4,999", mainImg: bag_1, hoverImg: bag_2 },
+    { id: 2, name: "Sunset Glasses", category: "glasses", price: "2,499", mainImg: glasses_1, hoverImg: glasses_2 },
+    { id: 3, name: "Elite Watch", category: "watches", price: "8,999", mainImg: watch_1, hoverImg: watch_2 },
 
-    {
-        id:1,
-        name: 'Taupe Bag',
-        image : bag_1
-    },
+];
 
-    {
-        id:2,
-        name:'Taupe Bag',
-        image: bag_2
-    },
-
-    {
-        id:3,
-        name:'Taupe Bag',
-        image: glasses_1
-    },
-
-    {
-        id: 4,
-        name: 'Taupe Bag',
-        image: glasses_2
-    },
-
+export const small_cards = [
+    { id: 1, name: "Hat",category: "Hat", mainImg: hat_1,},
+    { id: 2, name: "Hat",category: "Hat", mainImg: hat_1,},
+    { id: 3, name: "Hat",category: "Hat", mainImg: hat_2,},
+    { id: 4, name: "Hat",category: "Hat", mainImg: hat_3,},
+    { id: 5, name: "Watch",category: "watches", mainImg: watch_1,},
+    { id: 6, name: "Watch",category: "watches", mainImg: watch_2,},
+    { id: 7, name: "Watch",category: "watches", mainImg: watch_3,},
     
 ];
-
-export const Product = [
-    {
-        id:1,
-        name:'Taupe Bag',
-        image:Taupe_Bag_1
-    },
-    {
-        id:2,
-        name:'Taupe Bag',
-        image:Taupe_Bag_2
-    },
-    {
-        id:3,
-        name:'Taupe Bag',
-        image:Taupe_Bag_3
-    },
-    {
-        id:4,
-        name:'Taupe Bag',
-        image:Taupe_Bag_4
-    }
-]
 
