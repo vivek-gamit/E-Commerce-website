@@ -18,7 +18,7 @@ const Categories = () => {
            
             <div 
                 onMouseLeave={() => setActiveIndex(0)} 
-                className='flex flex-col lg:flex-row gap-3 h-150 lg:h-191.5 w-full'
+                className='flex flex-col lg:flex-row gap-3 h-160 lg:h-191.5 w-full'
             >
                 {categories.map((item, index) => (
                     <div

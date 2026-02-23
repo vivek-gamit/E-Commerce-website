@@ -21,7 +21,7 @@ const Product_Dasbord = () => {
                 {/* Left: Main Image */}
                 <div className='shrink-0'>
                     <img
-                        className='w-full md:w-180 h-auto aspect-square object-cover'
+                        className='w-full md:w-140 h-auto aspect-square object-cover'
                         src={displayProduct.mainImg}
                         alt={displayProduct.name}
                     />

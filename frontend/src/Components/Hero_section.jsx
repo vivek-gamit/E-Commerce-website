@@ -86,7 +86,7 @@ const Hero_section = () => {
                                     ease: "easeInOut",
                                     delay: totalDelay + 1.4 // after rise + pause
                                 }}
-                                className='h-75 w-60 object-cover rounded-4xl shadow-2xl will-change-transform'
+                                className='h-70 w-60 object-cover rounded-4xl shadow-2xl will-change-transform'
                             />
                         </motion.div>
                     );
