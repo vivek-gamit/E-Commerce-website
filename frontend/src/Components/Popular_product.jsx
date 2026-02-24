@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import heart from '../assets/images/line-md_heart.png'
 import {products} from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
-import { small_cards } from '../assets/assets'
+
 
 const Popular_product = () => {
 
@@ -15,7 +15,7 @@ const Popular_product = () => {
 
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6 w-full'>
 
-                {products.map((item) => (
+                {products.slice(10,14).map((item) => (
                     <div key={item.id} className='group flex flex-col cursor-pointer'>
 
 

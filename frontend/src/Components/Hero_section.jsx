@@ -28,8 +28,8 @@ const Hero_section = () => {
                 transition={{ duration: 1, ease: "easeOut", delay: 1 }}
                 className='text-center mb-6 z-20'
             >
-                <h2 className='text-2xl mb-1'>The Ultimate</h2>
-                <h2 className='text-5xl tracking-tight'>COLLECTIONS</h2>
+                <h2 className='text-2xl mb-1 font-semibold'>The Ultimate</h2>
+                <h2 className='text-5xl tracking-tight font-semibold'>COLLECTIONS</h2>
             </motion.div>
 
             {/* Cards */}

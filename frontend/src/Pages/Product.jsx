@@ -14,11 +14,16 @@ import glasses_3 from '../assets/images/product/Glasses/glassess_3.png'
 import G_hover_1 from '../assets/images/product/Glasses/G_hover_1.png'
 import G_hover_3 from '../assets/images/product/Glasses/G_hover_3.png'
 import watch_1 from '../assets/images/product/watch/watch_1.png'
-import watch_2 from '../assets/images/product/watch/watch_2.png'
 import watch_3 from '../assets/images/product/watch/watch_3.png'
 import W_hover_1 from '../assets/images/product/watch/W_hover_1.png'
 import W_hover_2 from '../assets/images/product/watch/W_hover_2.png'
 import W_hover_3 from '../assets/images/product/watch/W_hover_3.png'
+import Hat_1 from '../assets/images/component_3/Hat_1.png'
+import Hat_2 from '../assets/images/component_3/Hat_2.png'
+import Hat_3 from '../assets/images/component_3/Hat_3.png'
+import Hat_4 from '../assets/images/component_3/Hat_4.png'
+import watch_2 from '../assets/images/component_2/watch_2.png'
+import W_watch_2 from '../assets/images/product/watch/W_watch_2.png'
 import { useParams } from 'react-router-dom'
 
 
@@ -30,10 +35,13 @@ const products = [
         { id: 3, name: "Taupe Bag", category: "bags", price: "4,999", mainImg: Taupe_Bag_3, hoverImg: hover_img_3 },
         { id: 4, name: "Taupe Bag", category: "bags", price: "4,999", mainImg: Taupe_Bag_4, hoverImg: hover_img_4 },
         { id: 5, name: "Glasses", category: "glasses", price: "4,999", mainImg: glasses_1, hoverImg: G_hover_1 },
-        { id: 7, name: "Glasses", category: "glasses", price: "4,999", mainImg: glasses_3, hoverImg: G_hover_3 },
+        { id: 6, name: "Glasses", category: "glasses", price: "4,999", mainImg: glasses_3, hoverImg: G_hover_3 },
         { id: 7, name: "Watch", category: "watches", price: "4,999", mainImg: watch_1, hoverImg: W_hover_1 },
-        { id: 7, name: "Watch", category: "watches", price: "4,999", mainImg: watch_2, hoverImg: W_hover_2 },
-        { id: 7, name: "Watch", category: "watches", price: "4,999", mainImg: watch_3, hoverImg: W_hover_3 },
+        { id: 8, name: "Watch", category: "watches", price: "4,999", mainImg: W_watch_2, hoverImg: W_hover_2 },
+        { id: 9, name: "Watch", category: "watches", price: "4,999", mainImg: watch_3, hoverImg: W_hover_3 },
+        { id: 10, name: "Taupe Bag", price: "4,999", mainImg: Hat_1, hoverImg: Hat_2, categories: "Featured", category: "Hat"},
+        { id: 11, name: "Classic Hat", price: "2,499", mainImg: Hat_3, hoverImg: Hat_4, categories: "Popular", category: "Hat", },
+
     ];
 
     const { category } = useParams();
