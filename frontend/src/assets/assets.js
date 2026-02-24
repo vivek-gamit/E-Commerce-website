@@ -38,20 +38,8 @@ import Hat_2 from '../assets/images/component_3/Hat_2.png'
 import Hat_3 from '../assets/images/component_3/Hat_3.png'
 import Hat_4 from '../assets/images/component_3/Hat_4.png'
 
-// Category 1 & 2 Imports (Component_3 folder)
-// import glasses_1 from '../assets/images/component_3/glasses_1.png'
-// import glasses_2 from '../assets/images/component_3/glasses_2.png'
-// import watch_1 from '../assets/images/component_3/watch_1.png'
-// import watch_2 from '../assets/images/component_3/watch_2.png'
-// import Hat_3 from '../assets/images/component_3/Hat_3.png'
-// import Hat_4 from '../assets/images/component_3/Hat_4.png'
-// import watch_3 from '../assets/images/component_3/watch_3.png'
 import watch_4 from '../assets/images/component_3/watch_4.png'
 
-// Trendy Category Imports (Component_2 folder)
-
-// import bag_1 from '../assets/images/component_2/bag_1.png'
-// import bag_2 from '../assets/images/component_2/bag_2.png'
 import glasses_comp2_1 from '../assets/images/component_2/glasses_1.png'
 import glasses_comp2_2 from '../assets/images/component_2/glasses_2.png'
 import watch_comp2_1 from '../assets/images/component_2/watch_1.png'
