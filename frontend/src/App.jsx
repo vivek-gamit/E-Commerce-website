@@ -5,6 +5,11 @@ import Home from './Pages/Home'
 import Footer from './Components/Footer'
 import Product from './Pages/Product'
 import Product_Dasbord from './Pages/Product_Dasbord'
+import About from './Pages/About'
+import Blog from './Pages/Blog'
+import Contact from './Pages/Contact'
+import Favorite from './Pages/Favorite'
+import Card from './Pages/Card'
 
 
 const App = () => {
@@ -19,6 +24,11 @@ const App = () => {
           <Route path='/product/:category' element={<Product />} />
           <Route path='/product_Dasbord' element={<Product_Dasbord />} />
           <Route path='/product_Dasbord/:id/:category?' element={<Product_Dasbord />} />
+          <Route path='about' element={<About/>} />
+          <Route path='blog' element={<Blog/>} />
+          <Route path='contact' element={<Contact/>} />
+          <Route path='favorite' element={<Favorite/>} />
+          <Route path='card' element={<Card/>} />
           
 
         </Routes>
