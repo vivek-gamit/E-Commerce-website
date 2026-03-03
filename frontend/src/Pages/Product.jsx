@@ -24,29 +24,19 @@ import Hat_3 from '../assets/images/component_3/Hat_3.png'
 import Hat_4 from '../assets/images/component_3/Hat_4.png'
 import watch_2 from '../assets/images/component_2/watch_2.png'
 import W_watch_2 from '../assets/images/product/watch/W_watch_2.png'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { allProducts } from '../assets/assets'
 
 
 const Product = () => {
 
-const products = [
-        { id: 1, name: "Taupe Bag", category: "bags", price: "4,999", mainImg: Taupe_Bag_1, hoverImg: hover_img_1 },
-        { id: 2, name: "Taupe Bag", category: "bags", price: "4,999", mainImg: Taupe_Bag_2, hoverImg: hover_img_2 },
-        { id: 3, name: "Taupe Bag", category: "bags", price: "4,999", mainImg: Taupe_Bag_3, hoverImg: hover_img_3 },
-        { id: 4, name: "Taupe Bag", category: "bags", price: "4,999", mainImg: Taupe_Bag_4, hoverImg: hover_img_4 },
-        { id: 5, name: "Glasses", category: "glasses", price: "4,999", mainImg: glasses_1, hoverImg: G_hover_1 },
-        { id: 6, name: "Glasses", category: "glasses", price: "4,999", mainImg: glasses_3, hoverImg: G_hover_3 },
-        { id: 7, name: "Watch", category: "watches", price: "4,999", mainImg: watch_1, hoverImg: W_hover_1 },
-        { id: 8, name: "Watch", category: "watches", price: "4,999", mainImg: W_watch_2, hoverImg: W_hover_2 },
-        { id: 9, name: "Watch", category: "watches", price: "4,999", mainImg: watch_3, hoverImg: W_hover_3 },
-        { id: 10, name: "Taupe Bag", price: "4,999", mainImg: Hat_1, hoverImg: Hat_2, categories: "Featured", category: "Hat"},
-        { id: 11, name: "Classic Hat", price: "2,499", mainImg: Hat_3, hoverImg: Hat_4, categories: "Popular", category: "Hat", },
-
-    ];
+    const navigate = useNavigate()
 
     const { category } = useParams();
 
-    const displayProduct = category? products.filter(item => item.category === category) : products; 
+    const displayProduct = category ? allProducts.filter(item => item.category === category) : allProducts;
+   
+    
 
     return (
         <div >
@@ -58,7 +48,8 @@ const products = [
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-6 w-full'>
 
                     {displayProduct.map((item) => (
-                        <div key={item.id} className='group flex flex-col cursor-pointer'>
+                        <div key={item.id} 
+                            className='group flex flex-col cursor-pointer'>
 
 
                             <div className='relative overflow-hidden aspect-square bg-[#F3F3F3] rounded-sm'>
@@ -73,6 +64,11 @@ const products = [
                                     className='absolute top-4 right-4 z-20 w-8 h-8 object-contain bg-white rounded-full p-1.5 shadow-sm'
                                     src={heart}
                                     alt="Favorite"
+                                    onClick={(e) => {
+                                        // 2. STOP PROPAGATION: This prevents the page from navigating when you just want to "Like"
+                                        e.stopPropagation();
+                                        console.log("Added to favorites:", item.id);
+                                    }}
                                 />
 
 
@@ -84,13 +80,14 @@ const products = [
 
                                 {/* HOVER IMAGE (Fades in on hover) */}
                                 <img
+                                    onClick={() => navigate(`/product_Dasbord/${item.id}/${item.category || ''}`)}
                                     src={item.hoverImg} // This uses the hoverImg from the array above
                                     className='absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100'
                                     alt={`${item.name} hover`}
                                 />
 
                                 {/* 1. Use left-0 w-full + padding to create the 'gaps' on sides and bottom */}
- 
+
                             </div>
 
                             {/* TEXT CONTAINER */}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import heart from '../assets/images/line-md_heart.png'
-import {products} from '../assets/assets'
+import {allProducts} from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -15,7 +15,7 @@ const Popular_product = () => {
 
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6 w-full'>
 
-                {products.slice(10,14).map((item) => (
+                {allProducts.slice(11,15).map((item) => (
                     <div key={item.id} className='group flex flex-col cursor-pointer'>
 
 

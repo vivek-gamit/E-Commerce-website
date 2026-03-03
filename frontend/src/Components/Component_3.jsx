@@ -3,13 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion' // Added AnimatePresence
 import heart from '../assets/images/line-md_heart.png'
 
 import { useNavigate } from 'react-router-dom'
-import { products } from '../assets/assets'
+import { allProducts } from '../assets/assets'
 
 const Component_3 = () => {
     const [activeTab, setActiveTab] = useState('Featured');
 
     // Logic: If Popular is clicked, we can manually reorder or just let layout prop handle the shift
-    const filteredProducts = products.filter(item => item.categories === activeTab);
+    const filteredProducts = allProducts.filter(item => item.categories === activeTab);
     const navigate = useNavigate();
 
     return (

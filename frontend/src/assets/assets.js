@@ -58,24 +58,31 @@ export const categories = [
     { id: 5, name: 'Sports Wears', image: Sports_Wears }
 ];
 
-export const products = [
-    { id: 1, name: "Taupe Bag", price: "4,999", mainImg: Hat_1, hoverImg: Hat_2, categories: "Featured", category: "Hat" },
-    { id: 2, name: "Glasses", category: "glasses", price: "4,999", mainImg: glasses_3, hoverImg: G_hover_3, categories: "Featured", },
-    { id: 3, name: "Watch", category: "watches", price: "4,999", mainImg: W_hover_3, hoverImg: watch_3, categories: "Featured", },
-    { id: 4, name: "Taupe Bag", price: "4,999", mainImg: glasses_1, hoverImg: glasses_2, categories: "Featured", category: "glasses" },
-    { id: 5, name: "Taupe Bag", price: "4,999", mainImg: watch_1, hoverImg: watch_2, categories: "Featured", category: "watches" },
-    { id: 6, name: "Classic Hat", price: "2,499", mainImg: Hat_3, hoverImg: Hat_4, categories: "Popular", category: "Hat" },
-    { id: 7, name: "Luxury Watch", price: "6,999", mainImg: W_watch_2, hoverImg: watch_4, categories: "Popular", category: "watches" },
-    { id: 8, name: "Taupe Bag", price: "4,999", mainImg: bag_1, hoverImg: bag_2, categories: "Trendy", category: "bags" },
-    { id: 9, name: "Taupe Bag", price: "4,999", mainImg: glasses_comp2_1, hoverImg: glasses_comp2_2, categories: "Trendy", category: "glasses" },
-    { id: 10, name: "Taupe Bag", price: "4,999", mainImg: watch_comp2_1, hoverImg: watch_comp2_2, categories: "Trendy", category: "watches" },
-
-    // Added from second array (IDs updated to avoid duplicates)
-    { id: 11, name: "Taupe Bag", category: "bags", price: "4,999", mainImg: bag_1, hoverImg: bag_2, categories: "New Arrival" },
-    { id: 12, name: "Sunset Glasses", category: "glasses", price: "2,499", mainImg: glasses_1, hoverImg: glasses_2, categories: "New Arrival" },
-    { id: 13, name: "Elite Watch", category: "watches", price: "8,999", mainImg: watch_1, hoverImg: watch_2, categories: "New Arrival" },
+// assets.jsx
+export const allProducts = [
+    // Group 1: Bags
+    { id: 1, name: "Taupe Bag Classic", category: "bags", price: "4,999", mainImg: Taupe_Bag_1, hoverImg: hover_img_1, categories: "New Arrival" },
+    { id: 2, name: "Taupe Bag Modern", category: "bags", price: "4,999", mainImg: Taupe_Bag_2, hoverImg: hover_img_2, categories: "New Arrival" },
+    { id: 3, name: "Taupe Bag Sleek", category: "bags", price: "4,999", mainImg: Taupe_Bag_3, hoverImg: hover_img_3, categories: "New Arrival" },
+    { id: 4, name: "Taupe Bag Urban", category: "bags", price: "4,999", mainImg: Taupe_Bag_4, hoverImg: hover_img_4, categories: "New Arrival" },
     
+    // Group 2: Glasses
+    { id: 5, name: "Sunset Glasses", category: "glasses", price: "4,999", mainImg: glasses_1, hoverImg: G_hover_1, categories: "Featured" },
+    { id: 6, name: "Vista Glasses", category: "glasses", price: "4,999", mainImg: glasses_3, hoverImg: G_hover_3, categories: "Featured" },
     
+    // Group 3: Watches
+    { id: 7, name: "Elite Watch", category: "watches", price: "4,999", mainImg: watch_1, hoverImg: W_hover_1, categories: "Featured" },
+    { id: 8, name: "Luxury Watch", category: "watches", price: "4,999", mainImg: W_watch_2, hoverImg: W_hover_2, categories: "Popular" },
+    { id: 9, name: "Sport Watch", category: "watches", price: "4,999", mainImg: watch_3, hoverImg: W_hover_3, categories: "Featured" },
+    
+    // Group 4: Hats & More
+    { id: 10, name: "Featured Hat", category: "Hat", price: "4,999", mainImg: Hat_1, hoverImg: Hat_2, categories: "Featured" },
+    { id: 11, name: "Classic Hat", category: "Hat", price: "2,499", mainImg: Hat_3, hoverImg: Hat_4, categories: "Popular" },
+    
+    // Group 5: Trendy items from your second list
+    { id: 12, name: "Trendy Bag", category: "bags", price: "4,999", mainImg: bag_1, hoverImg: bag_2, categories: "Trendy" },
+    { id: 13, name: "Trendy Glasses", category: "glasses", price: "4,999", mainImg: glasses_comp2_1, hoverImg: glasses_comp2_2, categories: "Trendy" },
+    { id: 14, name: "Trendy Watch", category: "watches", price: "4,999", mainImg: watch_comp2_1, hoverImg: watch_comp2_2, categories: "Trendy" }
 ];
 
 export const small_cards = [

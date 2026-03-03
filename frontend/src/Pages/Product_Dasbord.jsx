@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { FaStar } from "react-icons/fa"
 import { CiHeart } from "react-icons/ci"
-import { products, small_cards } from '../assets/assets'
+import { allProducts, small_cards } from '../assets/assets'
 import { LuDot } from "react-icons/lu";
 
 
@@ -11,7 +11,7 @@ const Product_Dasbord = () => {
 
     
     const { id } = useParams();
-    const displayProduct = products.find(item => item.id === Number(id));
+    const displayProduct = allProducts.find(item => item.id === Number(id));
 
     if (!displayProduct) {
         return <div className='p-20 text-center'>Product not found</div>;
