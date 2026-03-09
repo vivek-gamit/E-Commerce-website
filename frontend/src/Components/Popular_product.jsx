@@ -15,7 +15,7 @@ const Popular_product = () => {
 
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6 w-full'>
 
-                {allProducts.slice(11,15).map((item) => (
+                {allProducts.slice(8,11).map((item) => (
                     <div key={item.id} className='group flex flex-col cursor-pointer'>
 
 

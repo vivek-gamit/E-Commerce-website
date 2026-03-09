@@ -8,7 +8,7 @@ import { allProducts } from '../assets/assets'
 const Component_3 = () => {
     const [activeTab, setActiveTab] = useState('Featured');
 
-    // Logic: If Popular is clicked, we can manually reorder or just let layout prop handle the shift
+   
     const filteredProducts = allProducts.filter(item => item.categories === activeTab);
     const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const Component_3 = () => {
                         }`}
                     >
                         {tab}
-                        {/* Underline animation for premium feel */}
+                       
                         {activeTab === tab && (
                             <motion.div 
                                 layoutId="activeTab"
@@ -36,7 +36,7 @@ const Component_3 = () => {
                 ))}
             </div>
 
-            {/* Product Grid with Layout Animations */}
+            
             <motion.div 
                 layout
                 className='grid grid-cols-1 md:grid-cols-3 gap-8 w-full'
