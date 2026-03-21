@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 async function adminMiddleware(req, res, next) {
-    const token = req.cookies.token;
+    const { token } = req.headers;
 
     if (!token) {
         return res.status(401).json({ message: "Unauthorized" });
