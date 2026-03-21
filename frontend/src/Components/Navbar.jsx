@@ -60,7 +60,7 @@ const Navbar = () => {
             initial="hidden"
             animate="visible"
             variants={navVariants}
-            className='flex justify-between items-center mx-4 mt-1 px-6 relative z-[100] h-20'
+            className='flex justify-between items-center mx-4 mt-1 px-6 relative z-100 h-20'
         >
             {/* Logo */}
             <motion.div
@@ -117,7 +117,7 @@ const Navbar = () => {
 
                             {/* Dropdown Menu - Controlled by showMenu state */}
                             {showMenu && (
-                                <div className='absolute right-0 top-full w-40 z-[999] pt-2'>
+                                <div className='absolute right-0 top-full w-40 z-999 pt-2'>
                                     <div className='flex flex-col gap-2 py-3 px-4 bg-white text-gray-500 rounded-xl shadow-2xl border border-gray-100'>
                                         <p
                                             onClick={() => { navigate('/profile'); setShowMenu(false); }}
