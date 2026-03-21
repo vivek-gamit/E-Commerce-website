@@ -1,0 +1,19 @@
+# Environment variables
+.env
+
+# Node modules
+node_modules/
+
+# Package lock file (optional)
+package-lock.json
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+
+# Build folders
+dist/
+build/

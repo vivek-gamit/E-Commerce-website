@@ -1,0 +1,62 @@
+
+.instrument-serif-regular {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.instrument-serif-regular-italic {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Container that holds the moving row */
+.marquee-container {
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  white-space: nowrap;
+}
+
+/* The actual moving row */
+.marquee-content {
+  display: flex;
+  animation: marquee 15s linear infinite;
+}
+
+/* Pause animation on hover */
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+/* Keyframes for the right-to-left scroll */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-150%);
+  }
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+.fashion-font {
+  font-family: 'Playfair Display', serif;
+}
+
+.geist_font {
+  font-family: "Geist", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.instrument-sans{
+  font-family: "Instrument Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}

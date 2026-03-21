@@ -10,6 +10,8 @@ import Blog from './Pages/Blog'
 import Contact from './Pages/Contact'
 import Favorite from './Pages/Favorite'
 import Card from './Pages/Card'
+import Login from './Pages/Login'
+import Profile from './Pages/Profile'
 
 
 const App = () => {
@@ -29,6 +31,8 @@ const App = () => {
           <Route path='contact' element={<Contact/>} />
           <Route path='favorite' element={<Favorite/>} />
           <Route path='card' element={<Card/>} />
+          <Route path='login' element={ <Login/>} />
+          <Route path='profile' element={ <Profile/>} />
           
 
         </Routes>
