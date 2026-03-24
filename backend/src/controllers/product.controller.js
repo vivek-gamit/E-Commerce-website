@@ -41,4 +41,37 @@ async function addProduct(req, res) {
     }
 } 
 
-module.exports = { addProduct }
+async function listProduct(req, res) {
+    try {
+        const Products = await productModel.find({})
+
+        return res.status(200).json({ success: true, products: Products})
+
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false,message: error.message})
+    }
+}
+
+async function removeProduct(req, res) {
+    try {
+        const {id} = req.body;
+
+        if(!id){
+            return res.json({ success: false, message: 'Product ID is required'});
+        }
+
+        const deleteProduct = await productModel.findByIdAndDelete(id);
+
+        if(!deleteProduct){
+            return res.json({ success: false, message: 'Product not found'})
+        }
+
+        return res.status(200).json({ success:true ,message: "Product removed from inventory" })
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ success: false, message:error.message})
+    }
+}
+module.exports = { addProduct, listProduct, removeProduct }

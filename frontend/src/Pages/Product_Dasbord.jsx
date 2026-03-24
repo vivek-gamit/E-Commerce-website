@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { FaStar } from "react-icons/fa"
 import { CiHeart } from "react-icons/ci"
 import { allProducts, small_cards } from '../assets/assets'
@@ -9,7 +9,8 @@ import { LuDot } from "react-icons/lu";
 
 const Product_Dasbord = () => {
 
-    
+
+    const navigate = useNavigate();
     const { id } = useParams();
     const displayProduct = allProducts.find(item => item.id === Number(id));
 
@@ -64,11 +65,22 @@ const Product_Dasbord = () => {
 
                     {/* Action Buttons */}
                     <div className='flex gap-2 mt-2 h-14'>
-                        <button className='bg-black text-white w-full uppercase tracking-widest hover:bg-zinc-800 transition-colors'>
+                        <button onClick={()=> {navigate(`/cartpage`)}} className='bg-black text-white w-full uppercase tracking-widest hover:bg-zinc-800 transition-colors'>
                             Add to Cart
                         </button>
                         <div className='bg-gray-100 h-full w-16 flex justify-center items-center cursor-pointer hover:bg-gray-200'>
                             <CiHeart size={30} />
+                        </div>
+                    </div>
+
+
+                    <div className='flex gap-2 mt-2 h-14'>
+                        <button onClick={() => { navigate(`/checkoutPage`) }} className='bg-black text-white w-full uppercase tracking-widest hover:bg-zinc-800 transition-colors'>
+                            Buy now
+                        </button>
+
+                        <div className='bg-white h-full w-16 flex justify-center items-center'>
+                           
                         </div>
                     </div>
 

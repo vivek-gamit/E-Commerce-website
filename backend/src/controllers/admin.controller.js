@@ -1,25 +1,21 @@
 const jwt = require('jsonwebtoken');
 
 async function loginAdmin(req, res) {
-
     try {
-        const { email, password} = req.body;
+        const { email, password } = req.body;
 
-        if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
 
-            const token = jwt.sign(email + password, process.env.JWT_SECRET)
+            const token = jwt.sign({ role: 'admin', email: email }, process.env.JWT_SECRET);
 
-             res.cookie('token', token)
-
+            res.cookie('token', token);
             res.json({ success: true, token });
-        }
-        else{
+        } else {
             res.json({ success: false, message: "Invalid admin credentials" });
         }
-        
     } catch (error) {
         console.log(error);
-       res.json({ success: false, message: error.message });
+        res.json({ success: false, message: error.message });
     }
 }
 

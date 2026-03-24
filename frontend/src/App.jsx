@@ -12,6 +12,9 @@ import Favorite from './Pages/Favorite'
 import Card from './Pages/Card'
 import Login from './Pages/Login'
 import Profile from './Pages/Profile'
+import CheckoutPage from './Pages/CheckoutPage'
+import PaymentPage from './Pages/PaymentPage'
+import CartPage from './Pages/CartPage'
 
 
 const App = () => {
@@ -33,6 +36,10 @@ const App = () => {
           <Route path='card' element={<Card/>} />
           <Route path='login' element={ <Login/>} />
           <Route path='profile' element={ <Profile/>} />
+          <Route path='checkoutPage' element={ <CheckoutPage/>} />
+          <Route path='paymentpage' element={ <PaymentPage/>} />
+          <Route path='cartpage' element={<CartPage/>}/>
+          
           
 
         </Routes>
