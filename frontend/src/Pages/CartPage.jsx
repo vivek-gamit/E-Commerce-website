@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const CartPage = () => {
+
+  
   // Sample state - in a real app, this comes from Redux or Context
   const [cartItems, setCartItems] = useState([
     { id: 1, name: "Taupe Bag Classic", price: 4999, qty: 1, image: "/bag-image.jpg" },
@@ -19,7 +22,8 @@ const CartPage = () => {
   };
 
   const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.qty), 0);
-
+   
+  const navigate = useNavigate();
   return (
     <div className="bg-white min-h-screen p-6 md:p-12 max-w-5xl mx-auto">
       <h1 className="text-3xl font-serif mb-10 italic">Your Shopping Bag</h1>
@@ -79,7 +83,7 @@ const CartPage = () => {
             <span className="text-2xl font-bold">₹{subtotal.toLocaleString()}</span>
           </div>
 
-          <button className="w-full bg-black text-white py-4 rounded-full font-bold hover:bg-gray-800 transition-all flex items-center justify-center gap-2">
+          <button onClick={() => {navigate(`/paymentpage`)}} className="w-full bg-black text-white py-4 rounded-full font-bold hover:bg-gray-800 transition-all flex items-center justify-center gap-2">
             CHECKOUT
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />

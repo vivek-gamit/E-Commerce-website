@@ -43,7 +43,7 @@ const Popular_product = () => {
 
                             {/* HOVER IMAGE (Fades in on hover) */}
                             <img
-                                onClick={()=> {navigate(`/product_Dasbord/${item.id}`)}}
+                                onClick={()=> {navigate(`/product_Dasbord/${item._id}`)}}
                         
                                 src={item.hoverImg} // This uses the hoverImg from the array above
                                 className='absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100'

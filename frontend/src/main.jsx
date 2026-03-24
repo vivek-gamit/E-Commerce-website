@@ -9,14 +9,17 @@ import { AuthProvider } from './Context/authContext.jsx'
 
 createRoot(document.getElementById('root')).render(
 
-  <AuthProvider>
 
-    <BrowserRouter>
+
+  <BrowserRouter>
+    <AuthProvider>
       <ScrollToTop />
       <App />
-    </BrowserRouter>
+    </AuthProvider>
 
-  </AuthProvider>
+  </BrowserRouter>
+
+
 
 
 )

@@ -1,15 +1,16 @@
 const productModel = require('../models/product.model')
 const { uploadToImagekit } = require('../services/storage.services')
+const mongoose = require('mongoose');
 
 async function addProduct(req, res) {
     try {
         const { name, description, price, category, subCategory, sizes, bestSeller } = req.body;
 
-        if(!req.files || req.files.length === 0){
-            return res.status(400).json({success: false ,message: "upload at least one image"});
+        if (!req.files || req.files.length === 0) {
+            return res.status(400).json({ success: false, message: "upload at least one image" });
         }
 
-        const imageUploadPromises = req.files.map(file => 
+        const imageUploadPromises = req.files.map(file =>
             uploadToImagekit(file.buffer, file.originalname)
         );
 
@@ -32,46 +33,69 @@ async function addProduct(req, res) {
         const newProduct = new productModel(ProductData);
         await newProduct.save();
 
-        return res.status(201).json({ success: true ,message: "Product listed in the store"})
+        return res.status(201).json({ success: true, message: "Product listed in the store" })
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ success: false, message: error.message})
-        
+        return res.status(500).json({ success: false, message: error.message })
+
     }
-} 
+}
 
 async function listProduct(req, res) {
     try {
         const Products = await productModel.find({})
 
-        return res.status(200).json({ success: true, products: Products})
+        return res.status(200).json({ success: true, products: Products })
 
     } catch (error) {
         console.log(error);
-        res.json({ success: false,message: error.message})
+        res.json({ success: false, message: error.message })
     }
 }
 
 async function removeProduct(req, res) {
     try {
-        const {id} = req.body;
+        const { id } = req.body;
 
-        if(!id){
-            return res.json({ success: false, message: 'Product ID is required'});
+        if (!id) {
+            return res.json({ success: false, message: 'Product ID is required' });
         }
 
         const deleteProduct = await productModel.findByIdAndDelete(id);
 
-        if(!deleteProduct){
-            return res.json({ success: false, message: 'Product not found'})
+        if (!deleteProduct) {
+            return res.json({ success: false, message: 'Product not found' })
         }
 
-        return res.status(200).json({ success:true ,message: "Product removed from inventory" })
+        return res.status(200).json({ success: true, message: "Product removed from inventory" })
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ success: false, message:error.message})
+        return res.status(500).json({ success: false, message: error.message })
     }
 }
-module.exports = { addProduct, listProduct, removeProduct }
+
+const getProductById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Check if the ID is a valid 24-character MongoDB ObjectId
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ success: false, message: "Invalid Product ID format" });
+        }
+
+        // 2. Changed 'Product' to 'productModel' to match your import at the top
+        const product = await productModel.findById(id);
+
+        if (!product) {
+            return res.status(404).json({ success: false, message: "Product not found" });
+        }
+
+        res.status(200).json({ success: true, product });
+    } catch (error) {
+        console.error("Backend Error:", error.message);
+        res.status(500).json({ success: false, message: "Server Error: " + error.message });
+    }
+};
+module.exports = { addProduct, listProduct, removeProduct, getProductById }

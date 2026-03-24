@@ -79,7 +79,7 @@ export const allProducts = [
     { id: 8, name: "Sport Watch", category: "watches", price: "4,999", mainImg: W_hover_3, hoverImg: watch_3 , categories: "Featured" },
     
     // Group 5: Trendy items from your second list
-    { id: 9, name: "Trendy Bag", category: "bags", price: "4,999", mainImg: bag_1, hoverImg: bag_2, categories: "Trendy" },
+    { _id: "69c0f01e4b283c1d4f0520d6", name: "Trendy Bag", category: "bags", price: "4,999", mainImg: "https://ik.imagekit.io/opdlhflsvu/fashion-store/product/091dc66654ec5527d465af1f2022d933bc2ee134_Xzc2DzkXi.png", hoverImg: "https://ik.imagekit.io/opdlhflsvu/fashion-store/product/glasses_2_PedTZStNX.png", categories: "Trendy" },
     { id: 10, name: "Trendy Glasses", category: "glasses", price: "4,999", mainImg: glasses_comp2_1, hoverImg: glasses_comp2_2, categories: "Trendy" },
     { id: 11, name: "Trendy Watch", category: "watches", price: "4,999", mainImg: watch_comp2_1, hoverImg: watch_comp2_2, categories: "Trendy" }
 ];
