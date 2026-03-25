@@ -53,70 +53,95 @@ const addToCart = async (req, res) => {
 };
 
 const getCart = async (req, res) => {
-    const userId = req.user.id;
-   
-    
     try {
-        const cart = await Cart.findOne({ userId }).populate('items.productId');
-       
+        const userId = req.user.id; // Ensure your authMiddleware is working
+
+        // 1. Find the cart
+        const cart = await cartModel.findOne({ userId });
+
+        // 2. If no cart exists yet, don't crash! Send an empty array back.
         if (!cart) {
-            return res.status(200).json({ items: [] });
+            return res.status(200).json({ 
+                success: true, 
+                cart: { items: [] } 
+            });
         }
 
-        res.status(200).json(cart);
-    } catch (err) {
-        res.status(500).json({ message: "Error fetching cart", error: err.message });
+        // 3. Success
+        res.status(200).json({ success: true, cart });
+
+    } catch (error) {
+        console.error("CART GET ERROR:", error.message);
+        res.status(500).json({ success: false, message: "Server Error" });
     }
 };
 
 const removeFromCart = async (req, res) => {
-    const { id } = req.params; // The productId to remove
-    const userId = req.user.id;
-
     try {
-        const cart = await Cart.findOneAndUpdate(
-            { userId },
-            { $pull: { items: { productId: id } } },
-            { new: true } // Returns the updated cart after removal
-        ).populate('items.productId');
+        const { productId } = req.body;
+        const userId = req.user.id;
+
+        const cart = await cartModel.findOne({ userId });
 
         if (!cart) {
-            return res.status(404).json({ message: "Cart not found" });
+            return res.status(404).json({ success: false, message: "Cart not found" });
         }
 
-        res.status(200).json(cart);
-    } catch (err) {
-        res.status(500).json({ message: "Error removing item", error: err.message });
+        const initialLength = cart.items.length;
+        cart.items = cart.items.filter(item => item.productId.toString() !== productId);
+
+        if (cart.items.length === initialLength) {
+            return res.status(404).json({ success: false, message: "Item not found in cart" });
+        }
+
+        await cart.save();
+        res.status(200).json({ success: true, message: "Item removed from cart" });
+
+    } catch (error) {
+        console.error("Remove Item Error:", error.message);
+        res.status(500).json({ success: false, message: error.message });
     }
 };
 
 const updateQuantity = async (req, res) => {
-  const { productId, quantity } = req.body; 
-  const userId = req.user.id;
+    try {
+        const { productId, quantity } = req.body;
+        const userId = req.user.id; // From your auth middleware
 
-  try {
-    
-    const cart = await Cart.findOne({ userId });
-    if (!cart) return res.status(404).json({ message: "Cart not found" });
+        // 1. Find the cart using your correct model name (cartModel)
+        const cart = await cartModel.findOne({ userId });
+        
+        if (!cart) {
+            return res.status(404).json({ success: false, message: "Cart not found" });
+        }
 
-   
-    const itemIndex = cart.items.findIndex(item => item.productId.toString() === productId);
+        // 2. Find the item index
+        const itemIndex = cart.items.findIndex(item => item.productId.toString() === productId);
 
-    if (itemIndex > -1) {
-    
-      cart.items[itemIndex].quantity = Math.max(1, quantity);
-      await cart.save();
+        if (itemIndex > -1) {
+            // Update the quantity
+            cart.items[itemIndex].quantity = Math.max(1, quantity);
+            await cart.save();
 
-      const updatedCart = await Cart.findOne({ userId }).populate('items.productId');
-      res.status(200).json(updatedCart);
-    } else {
-      res.status(404).json({ message: "Product not found in cart" });
+            // 3. Return a response format the frontend expects
+            return res.status(200).json({ 
+                success: true, 
+                message: "Quantity updated", 
+                cart 
+            });
+        } else {
+            return res.status(404).json({ success: false, message: "Product not found in cart" });
+        }
+
+    } catch (err) {
+        console.error("Update Qty Error:", err.message);
+        res.status(500).json({ 
+            success: false, 
+            message: "Error updating quantity", 
+            error: err.message 
+        });
     }
-  } catch (err) {
-    res.status(500).json({ message: "Error updating quantity", error: err.message });
-  }
 };
-
 module.exports = { addToCart, getCart, removeFromCart, updateQuantity };
 
 

@@ -80,12 +80,12 @@ const getProductById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        // Check if the ID is a valid 24-character MongoDB ObjectId
+       
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ success: false, message: "Invalid Product ID format" });
         }
 
-        // 2. Changed 'Product' to 'productModel' to match your import at the top
+      
         const product = await productModel.findById(id);
 
         if (!product) {

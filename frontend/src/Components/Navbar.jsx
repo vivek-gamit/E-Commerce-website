@@ -98,7 +98,7 @@ const Navbar = () => {
                         className='w-6 h-6 cursor-pointer'
                         src={card}
                         alt="cart"
-                        onClick={() => navigate(`/Card`)}
+                        onClick={() => navigate(`/cartpage`)}
                     />
                 </motion.div>
 
