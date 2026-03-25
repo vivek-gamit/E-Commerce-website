@@ -9,13 +9,12 @@ import About from './Pages/About'
 import Blog from './Pages/Blog'
 import Contact from './Pages/Contact'
 import Favorite from './Pages/Favorite'
-import Card from './Pages/Card'
 import Login from './Pages/Login'
 import Profile from './Pages/Profile'
 import CheckoutPage from './Pages/CheckoutPage'
 import PaymentPage from './Pages/PaymentPage'
 import CartPage from './Pages/CartPage'
-
+import Orders from './Pages/Orders'
 
 const App = () => {
   return (
@@ -29,16 +28,16 @@ const App = () => {
           <Route path='/product/:category' element={<Product />} />
           <Route path='/product_Dasbord' element={<Product_Dasbord />} />
           <Route path='/product_Dasbord/:id/:category?' element={<Product_Dasbord />} />
-          <Route path='about' element={<About/>} />
-          <Route path='blog' element={<Blog/>} />
-          <Route path='contact' element={<Contact/>} />
-          <Route path='favorite' element={<Favorite/>} />
-          <Route path='card' element={<Card/>} />
-          <Route path='login' element={ <Login/>} />
-          <Route path='profile' element={ <Profile/>} />
-          <Route path='checkoutPage' element={ <CheckoutPage/>} />
-          <Route path='paymentpage' element={ <PaymentPage/>} />
-          <Route path='cartpage' element={<CartPage/>}/>
+          <Route path='/about' element={<About/>} />
+          <Route path='/blog' element={<Blog/>} />
+          <Route path='/contact' element={<Contact/>} />
+          <Route path='/favorite' element={<Favorite/>} />
+          <Route path='/login' element={ <Login/>} />
+          <Route path='/profile' element={ <Profile/>} />
+          <Route path='/checkoutPage' element={ <CheckoutPage/>} />
+          <Route path='/paymentpage' element={ <PaymentPage/>} />
+          <Route path='/cartpage' element={<CartPage/>}/>
+          <Route path='/orders' element={<Orders/>}/>
           
           
 

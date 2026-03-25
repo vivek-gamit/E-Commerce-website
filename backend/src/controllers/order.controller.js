@@ -1,26 +1,48 @@
-const orderModel = require("../models/order.model");
+const orderModel = require('../models/order.model.js');
+const userModel = require('../models/user.model.js');
+const cartModel = require('../models/cart.model.js');
 
-
-const allOrders = async (req, res) => {
+// Placing order using Cash On Delivery
+const placeOrder = async (req, res) => {
     try {
-        const orders = await orderModel.find({});
-        res.json({ success: true, orders: orders.reverse() }); 
+        const { items, amount, address } = req.body;
+        const userId = req.user.id;
+
+        const orderData = {
+            userId,
+            items,
+            address,
+            amount,
+            paymentMethod: "COD",
+            payment: false,
+            date: Date.now()
+        }
+
+
+        const newOrder = new orderModel(orderData);
+        await newOrder.save();
+
+
+        await cartModel.findOneAndDelete({ userId });
+
+        res.json({ success: true, message: "Order Placed Successfully" });
+
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: error.message });
+        res.status(500).json({ success: false, message: error.message });
     }
 }
 
-
-const updateStatus = async (req, res) => {
+// Get orders for a specific user
+const userOrders = async (req, res) => {
     try {
-        const { orderId, status } = req.body;
-        await orderModel.findByIdAndUpdate(orderId, { status });
-        res.json({ success: true, message: 'Status Updated Successfully' });
+        const userId = req.user.id;
+        const orders = await orderModel.find({ userId });
+        res.json({ success: true, orders });
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: error.message });
+        res.status(500).json({ success: false, message: error.message });
     }
 }
 
-module.exports = { allOrders, updateStatus };
+module.exports = { placeOrder, userOrders }
