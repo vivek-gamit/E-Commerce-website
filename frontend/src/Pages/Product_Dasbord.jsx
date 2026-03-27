@@ -8,25 +8,19 @@ import { AuthContext } from '../Context/authContext';
 
 const Product_Dasbord = () => {
     const navigate = useNavigate();
-    const { id } = useParams(); // This is the MongoDB _id from the URL
+    const { id } = useParams(); 
     const { token } = useContext(AuthContext);
 
     // --- State Management ---
     const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true); // Loading the product from DB
-    const [cartLoading, setCartLoading] = useState(false); // Loading for Add to Cart button
-
-    console.log(product);
-    
+    const [loading, setLoading] = useState(true);
+    const [cartLoading, setCartLoading] = useState(false);
 
     // --- Fetch Product from Database ---
     useEffect(() => {
         const fetchProductData = async () => {
             try {
-                // Ensure this matches your GET API: http://localhost:3000/api/product/:id
                 const response = await axios.get(`http://localhost:3000/api/product/${id}`);
-                
-                
                 if (response.data.success) {
                     setProduct(response.data.product);
                 }
@@ -49,16 +43,16 @@ const Product_Dasbord = () => {
         setCartLoading(true);
         try {
             const response = await axios.post(
-                'http://localhost:3000/api/cart/add', 
+                'http://localhost:3000/api/cart/add',
                 {
-                    productId: product._id, // Sending the real MongoDB ObjectId
+                    productId: product._id,
                     price: product.price,
                     quantity: 1
-                }, 
+                },
                 { withCredentials: true }
             );
 
-            if (response.data) {
+            if (response.data.success) {
                 navigate('/cartpage');
             }
         } catch (error) {
@@ -69,12 +63,37 @@ const Product_Dasbord = () => {
         }
     };
 
+    // --- Buy Now Logic (Direct Checkout) ---
+    const handleBuyNow = () => {
+        if (!token) {
+            alert("Please login to continue.");
+            return navigate('/login');
+        }
+
+        // Prepare the data to "hand off" to the Checkout Page
+        const directBuyItem = {
+            productId: product._id,
+            name: product.name,
+            price: product.price,
+            quantity: 1,
+            image: product.images && product.images[0]
+        };
+
+        // Navigate and pass the data in the 'state' object
+        navigate('/checkoutPage', { 
+            state: { 
+                items: [directBuyItem], 
+                total: product.price 
+            } 
+        });
+    };
+
     if (loading) {
         return <div className='p-20 text-center font-serif text-2xl'>Loading Product...</div>;
     }
 
     if (!product) {
-        return <div className='p-20 text-center font-serif text-2xl'>Product not found in Database</div>;
+        return <div className='p-20 text-center font-serif text-2xl'>Product not found</div>;
     }
 
     return (
@@ -84,12 +103,12 @@ const Product_Dasbord = () => {
                 <div className='shrink-0'>
                     <img
                         className='w-full md:w-140 h-auto aspect-square object-cover shadow-sm'
-                        src={product.images && product.images[0]} // Using the images array from DB
+                        src={product.images && product.images[0]}
                         alt={product.name}
                     />
                 </div>
 
-                {/* Middle: Thumbnails (if any) */}
+                {/* Middle: Thumbnails */}
                 <div className='flex md:flex-col gap-3'>
                     {product.images && product.images.map((img, index) => (
                         <div key={index} className='cursor-pointer border hover:border-black'>
@@ -101,7 +120,7 @@ const Product_Dasbord = () => {
                 {/* Right: Product Details */}
                 <div className='flex flex-col flex-1 gap-4'>
                     <nav className='flex gap-1 items-center text-gray-400'>
-                        <span>Home</span> <LuDot className='text-xl' /> 
+                        <span>Home</span> <LuDot className='text-xl' />
                         <span>Shop</span><LuDot className='text-xl' />
                         <span className='text-black'>{product.category}</span>
                     </nav>
@@ -125,7 +144,7 @@ const Product_Dasbord = () => {
                     {/* Action Buttons */}
                     <div className='flex flex-col gap-3 mt-4'>
                         <div className='flex gap-2 h-14'>
-                            <button 
+                            <button
                                 onClick={handleAddToCart}
                                 disabled={cartLoading}
                                 className='bg-black text-white w-full uppercase tracking-widest hover:bg-zinc-800 transition-colors disabled:bg-zinc-500'
@@ -137,9 +156,18 @@ const Product_Dasbord = () => {
                             </div>
                         </div>
 
-                        <button onClick={() => navigate(`/checkoutPage`)} className='h-14 border border-black uppercase tracking-widest hover:bg-black hover:text-white transition-all'>
-                            Buy now
-                        </button>
+                        <div className='flex gap-2 h-14'>
+                            <button 
+                                onClick={handleBuyNow} // This is the new function call
+                                className='w-full h-14 border bg-black uppercase tracking-widest text-white hover:bg-zinc-800 transition-colors'
+                            >
+                                Buy now
+                            </button>
+
+                            <div className='bg-white h-full w-16 flex justify-center items-center'>
+                                {/* Design placeholder */}
+                            </div>
+                        </div>
                     </div>
 
                     {/* Meta Info */}

@@ -48,15 +48,20 @@ async function loginUser(req, res){
 };
 
 // GET PROFILE (Protected logic)
-async function getUserProfile(req, res){
+const getUserProfile = async (req, res) => {
     try {
-        const user = await User.findById(req.user.id).select('-password');
-        res.json({ success: true, user });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+        const userId = req.user.id; // From auth middleware
+        const user = await User.findById(userId).select('-password');
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        res.status(200).json({ success: true, user });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
     }
 };
-
  
 async function logoutUser(req,res){
     try {

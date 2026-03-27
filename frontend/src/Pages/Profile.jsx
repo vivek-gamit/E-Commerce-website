@@ -5,7 +5,7 @@ import api from '../Context/Appcontext'; // Your Axios instance
 const Profile = () => {
     const { user, setUser, token } = useContext(AuthContext);
 
-    
+
     const [isEditing, setIsEditing] = useState(false);
     const [loading, setLoading] = useState(true);
     const [updateLoading, setUpdateLoading] = useState(false);
@@ -19,7 +19,7 @@ const Profile = () => {
         dob: ''
     });
 
-   
+
     const loadUserProfileData = async () => {
         try {
             const { data } = await api.get('/auth/profile');
@@ -163,31 +163,7 @@ const Profile = () => {
                         )}
                     </div>
 
-                    {/* Address */}
-                    <div className="flex flex-col gap-2 md:col-span-2">
-                        <label className="text-[10px] uppercase text-gray-400 font-bold tracking-widest">Delivery Address</label>
-                        {isEditing ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                <input
-                                    placeholder="Line 1"
-                                    className="border p-2 rounded"
-                                    value={userData.address?.line1 || ''}
-                                    onChange={(e) => setUserData({ ...userData, address: { ...userData.address, line1: e.target.value } })}
-                                />
-                                <input
-                                    placeholder="City"
-                                    className="border p-2 rounded"
-                                    value={userData.address?.city || ''}
-                                    onChange={(e) => setUserData({ ...userData, address: { ...userData.address, city: e.target.value } })}
-                                />
-                                {/* Add more inputs for state and pincode as needed */}
-                            </div>
-                        ) : (
-                            <p className="text-lg text-zinc-800 leading-relaxed">
-                                {`${userData.address?.line1}, ${userData.address?.city}, ${userData.address?.state} - ${userData.address?.pincode}`}
-                            </p>
-                        )}
-                    </div>
+
                 </div>
             </div>
         </div>
