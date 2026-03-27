@@ -1,6 +1,7 @@
 const User = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const userModel = require('../models/user.model');
 
 // REGISTER
 async function registerUser(req, res){
@@ -47,7 +48,7 @@ async function loginUser(req, res){
     }
 };
 
-// GET PROFILE (Protected logic)
+// GET PROFILE 
 const getUserProfile = async (req, res) => {
     try {
         const userId = req.user.id; // From auth middleware
@@ -78,4 +79,46 @@ async function logoutUser(req,res){
     }
 };
 
-module.exports = { registerUser, loginUser, getUserProfile, logoutUser}
+async function updateProfile(req, res) {
+    
+   try {
+        const userId = req.user.id; // Comes from your auth middleware
+        const { name, phone, gender, dob, address } = req.body;
+
+        // 1. Find the user
+        const user = await userModel.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        // 2. Update the fields if they exist in the request
+        if (name) user.name = name;
+        if (phone) user.phone = phone;
+        if (gender) user.gender = gender;
+        if (dob !== undefined) user.dob = dob; 
+        
+        // If the user deleted an address from the frontend, this updates the array
+        if (address) {
+            user.address = address;
+            user.markModified('address'); // Tell Mongoose the array changed
+        }
+
+        // 3. Save to database
+        await user.save();
+
+        // 4. Fetch the updated user (excluding the password) to send back to React
+        const updatedUser = await userModel.findById(userId).select('-password');
+
+        res.json({ 
+            success: true, 
+            message: "Profile updated successfully", 
+            user: updatedUser 
+        });
+
+    } catch (error) {
+        console.error("Update Profile Error:", error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+module.exports = { registerUser, loginUser, getUserProfile, logoutUser, updateProfile}

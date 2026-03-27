@@ -10,7 +10,9 @@ const userSchema = new mongoose.Schema({
         type: Array,
         default: [] 
     },
-    favorites: { type: Array, default: [] }
+    favorites: { type: Array, default: [] },
+    gender: {type: String, default: "Not Specified"},
+    dob: { type: String, default: " "}
 }, { timestamps: true });
 
 const userModel = mongoose.model('User', userSchema);
