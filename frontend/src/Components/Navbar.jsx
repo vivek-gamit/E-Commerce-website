@@ -91,7 +91,7 @@ const Navbar = () => {
                         className='w-6 h-6 cursor-pointer'
                         src={heart}
                         alt="like"
-                        onClick={() => navigate(`/Favorite`)}
+                        onClick={() => navigate(`/FavoritesPage`)}
                     />
                     <motion.img
                         whileHover={{ scale: 1.1 }}

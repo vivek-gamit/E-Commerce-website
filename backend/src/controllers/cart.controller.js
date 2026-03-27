@@ -1,5 +1,6 @@
 const cartModel = require('../models/cart.model');
 const productModel = require('../models/product.model')
+const userModel = require('../models/user.model')
 
 const addToCart = async (req, res) => {
     try {
@@ -142,6 +143,73 @@ const updateQuantity = async (req, res) => {
         });
     }
 };
-module.exports = { addToCart, getCart, removeFromCart, updateQuantity };
+
+const toggleFavorite = async (req, res) => {
+    try {
+        const { productId } = req.body;
+        const userId = req.user.id; 
+
+        const user = await userModel.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        
+        if (!user.favorites) user.favorites = [];
+
+        // Check if product is already favorited
+        const index = user.favorites.indexOf(productId);
+
+        if (index === -1) {
+            // Not in list -> Add it
+            user.favorites.push(productId);
+        } else {
+            // Already in list -> Remove it
+            user.favorites.splice(index, 1);
+        }
+
+        user.markModified('favorites');
+        await user.save();
+
+        res.json({ 
+            success: true, 
+            message: index === -1 ? "Added to favorites" : "Removed from favorites",
+            isFavorite: index === -1
+        });
+
+    } catch (error) {
+        console.log("Favorite Toggle Error:", error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+const getFavorites = async (req, res) => {
+    try {
+        const userId = req.user.id; // From auth middleware
+
+        const user = await userModel.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        // If the user has no favorites, return an empty array
+        if (!user.favorites || user.favorites.length === 0) {
+            return res.json({ success: true, favorites: [] });
+        }
+
+        // Fetch all products whose _id matches the IDs in the user's favorites array
+        const favoriteProducts = await productModel.find({
+            _id: { $in: user.favorites }
+        });
+
+        res.json({ success: true, favorites: favoriteProducts });
+
+    } catch (error) {
+        console.error("Get Favorites Error:", error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+module.exports = { addToCart, getCart, removeFromCart, updateQuantity, toggleFavorite, getFavorites};
 
 

@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
     address: {
         type: Array,
         default: [] 
-    }
+    },
+    favorites: { type: Array, default: [] }
 }, { timestamps: true });
 
 const userModel = mongoose.model('User', userSchema);

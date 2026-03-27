@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaHeart } from "react-icons/fa"; // Added FaHeart
 import { CiHeart } from "react-icons/ci";
 import { LuDot } from "react-icons/lu";
 import axios from 'axios';
@@ -15,23 +15,34 @@ const Product_Dasbord = () => {
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [cartLoading, setCartLoading] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(false); // Favorite state
 
-    // --- Fetch Product from Database ---
+    // --- Fetch Product and Favorite Status ---
     useEffect(() => {
         const fetchProductData = async () => {
             try {
+                // 1. Fetch Product Details
                 const response = await axios.get(`http://localhost:3000/api/product/${id}`);
                 if (response.data.success) {
                     setProduct(response.data.product);
                 }
+
+                // 2. Fetch Favorite Status (Only if logged in)
+                if (token) {
+                    const res = await axios.get('http://localhost:3000/api/auth/profile', { withCredentials: true });
+                    if (res.data.success && res.data.user.favorites) {
+                        // Check if this product's ID is in the user's favorites array
+                        setIsFavorite(res.data.user.favorites.includes(id));
+                    }
+                }
             } catch (error) {
-                console.error("Error fetching product details:", error);
+                console.error("Error fetching data:", error);
             } finally {
                 setLoading(false);
             }
         };
         fetchProductData();
-    }, [id]);
+    }, [id, token]); // Added token to dependency array
 
     // --- Add to Cart Logic ---
     const handleAddToCart = async () => {
@@ -70,7 +81,6 @@ const Product_Dasbord = () => {
             return navigate('/login');
         }
 
-        // Prepare the data to "hand off" to the Checkout Page
         const directBuyItem = {
             productId: product._id,
             name: product.name,
@@ -79,13 +89,40 @@ const Product_Dasbord = () => {
             image: product.images && product.images[0]
         };
 
-        // Navigate and pass the data in the 'state' object
         navigate('/checkoutPage', { 
             state: { 
                 items: [directBuyItem], 
                 total: product.price 
             } 
         });
+    };
+
+    // --- Toggle Favorite Logic ---
+    const handleToggleFavorite = async () => {
+        if (!token) {
+            alert("Please login to save favorites.");
+            return navigate('/login');
+        }
+
+       
+        setIsFavorite(!isFavorite);
+
+        try {
+            const response = await axios.post(
+                'http://localhost:3000/api/cart/favorite',
+                { productId: product._id },
+                { withCredentials: true }
+            );
+
+            // Revert UI if the server request failed
+            if (!response.data.success) {
+                setIsFavorite(!isFavorite);
+                console.error("Failed to toggle favorite on server.");
+            }
+        } catch (error) {
+            setIsFavorite(!isFavorite); // Revert on error
+            console.error("Toggle Favorite Error:", error);
+        }
     };
 
     if (loading) {
@@ -151,14 +188,24 @@ const Product_Dasbord = () => {
                             >
                                 {cartLoading ? 'Adding...' : 'Add to Cart'}
                             </button>
-                            <div className='bg-gray-100 h-full w-16 flex justify-center items-center cursor-pointer hover:bg-gray-200'>
-                                <CiHeart size={30} />
+                            
+                            {/* --- NEW: Interactive Favorite Button --- */}
+                            <div 
+                                onClick={handleToggleFavorite}
+                                className='bg-gray-100 h-full w-16 flex justify-center items-center cursor-pointer hover:bg-gray-200 transition-colors'
+                                
+                            >
+                                {isFavorite ? (
+                                    <FaHeart size={26} className="text-red-500 transition-transform active:scale-75" />
+                                ) : (
+                                    <CiHeart size={30} className="text-black transition-transform active:scale-75" />
+                                )}
                             </div>
                         </div>
 
                         <div className='flex gap-2 h-14'>
                             <button 
-                                onClick={handleBuyNow} // This is the new function call
+                                onClick={handleBuyNow} 
                                 className='w-full h-14 border bg-black uppercase tracking-widest text-white hover:bg-zinc-800 transition-colors'
                             >
                                 Buy now
