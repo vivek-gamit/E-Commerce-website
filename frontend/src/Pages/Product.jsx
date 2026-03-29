@@ -1,29 +1,7 @@
 import React from 'react'
 import heart from '../assets/images/line-md_heart.png'
-import Taupe_Bag_1 from '../assets/images/product/Bag/Taupe_Bag_1.png'
-import Taupe_Bag_2 from '../assets/images/product/Bag/Taupe_Bag_2.png'
-import Taupe_Bag_3 from '../assets/images/product/Bag/Taupe_Bag_3.png'
-import Taupe_Bag_4 from '../assets/images/product/Bag/Taupe_Bag_4.png'
-import hover_img_1 from '../assets/images/product/Bag/hover_img_1.png'
-import hover_img_2 from '../assets/images/product/Bag/hover_img_2.png'
-import hover_img_3 from '../assets/images/product/Bag/hover_img_3.png'
-import hover_img_4 from '../assets/images/product/Bag/hover_img_4.png'
 import banner_1 from '../assets/images/banner_1.png'
-import glasses_1 from '../assets/images/product/Glasses/glasses_1.png'
-import glasses_3 from '../assets/images/product/Glasses/glassess_3.png'
-import G_hover_1 from '../assets/images/product/Glasses/G_hover_1.png'
-import G_hover_3 from '../assets/images/product/Glasses/G_hover_3.png'
-import watch_1 from '../assets/images/product/watch/watch_1.png'
-import watch_3 from '../assets/images/product/watch/watch_3.png'
-import W_hover_1 from '../assets/images/product/watch/W_hover_1.png'
-import W_hover_2 from '../assets/images/product/watch/W_hover_2.png'
-import W_hover_3 from '../assets/images/product/watch/W_hover_3.png'
-import Hat_1 from '../assets/images/component_3/Hat_1.png'
-import Hat_2 from '../assets/images/component_3/Hat_2.png'
-import Hat_3 from '../assets/images/component_3/Hat_3.png'
-import Hat_4 from '../assets/images/component_3/Hat_4.png'
-import watch_2 from '../assets/images/component_2/watch_2.png'
-import W_watch_2 from '../assets/images/product/watch/W_watch_2.png'
+
 import { useNavigate, useParams } from 'react-router-dom'
 import { allProducts } from '../assets/assets'
 
@@ -48,7 +26,7 @@ const Product = () => {
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-6 w-full'>
 
                     {displayProduct.map((item) => (
-                        <div key={item.id} 
+                        <div key={item._id} 
                             className='group flex flex-col cursor-pointer'>
 
 
@@ -67,7 +45,7 @@ const Product = () => {
                                     onClick={(e) => {
                                         // 2. STOP PROPAGATION: This prevents the page from navigating when you just want to "Like"
                                         e.stopPropagation();
-                                        console.log("Added to favorites:", item.id);
+                                        console.log("Added to favorites:", item._id);
                                     }}
                                 />
 
@@ -80,7 +58,7 @@ const Product = () => {
 
                                 {/* HOVER IMAGE (Fades in on hover) */}
                                 <img
-                                    onClick={() => navigate(`/product_Dasbord/${item.id}/${item.category || ''}`)}
+                                    onClick={() => navigate(`/product_Dasbord/${item._id}/${item.category || ''}`)}
                                     src={item.hoverImg} // This uses the hoverImg from the array above
                                     className='absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100'
                                     alt={`${item.name} hover`}

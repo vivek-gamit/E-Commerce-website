@@ -67,7 +67,7 @@ const Component_3 = () => {
                                 
                                 {/* Image Logic */}
                                 <img src={item.mainImg} className='absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-100 group-hover:opacity-0' alt={item.name} />
-                                <img onClick={()=> {navigate(`/product_Dasbord/${item.id}`)}} src={item.hoverImg} className='absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100' alt={`${item.name} hover`} />
+                                <img onClick={()=> {navigate(`/product_Dasbord/${item._id}`)}} src={item.hoverImg} className='absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100' alt={`${item.name} hover`} />
                                 
                                 {/* View Product Button */}
                                 <div className='absolute bottom-4 left-0 w-full px-4 h-11.25 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out'>

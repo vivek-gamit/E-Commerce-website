@@ -6,6 +6,7 @@ import img_3 from '../assets/images/hero_section/img_3.webp';
 import img_4 from '../assets/images/hero_section/img_4.webp';
 import img_5 from '../assets/images/hero_section/img_5.webp';
 import img_6 from '../assets/images/hero_section/img_6.webp';
+import { useNavigate } from 'react-router-dom';
 
 // --- THE MAGIC VARIABLE ---
 // Because this is outside the component, it remembers its state 
@@ -14,6 +15,7 @@ let hasPlayedAnimation = false;
 
 const Hero_section = () => {
 
+    const navigate = useNavigate();
     useEffect(() => {
         // Once the component loads for the first time, we set this to true.
         // On subsequent visits to this page (like clicking "Home"), it skips the delay.
@@ -113,7 +115,7 @@ const Hero_section = () => {
                     and effortless comfort perfect for every day, every plan.
                 </h2>
                 <div className='mt-6'>
-                    <button className='bg-black text-white px-10 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-800 transition-colors'>
+                    <button onClick={()=> {navigate(`/product`)}} className='bg-black text-white px-10 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-800 transition-colors'>
                         Shop Now
                     </button>
                 </div>
