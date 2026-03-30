@@ -1,73 +1,134 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { DollarSign, Package, Users, ShoppingCart } from 'lucide-react'
+import React from 'react';
+import { IndianRupee, ShoppingBag, Users, Package, ArrowRight, TrendingUp } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-const Dashboard = ({ token }) => {
-  const [stats, setStats] = useState({
-    totalRevenue: 0,
-    totalOrders: 0,
-    totalProducts: 0,
-    totalCustomers: 0
-  })
+const Dashboard = () => {
+    const navigate = useNavigate();
 
-  const fetchStats = async () => {
-    try {
-      // In a real app, you'd have a specific /api/admin/stats route
-      // For now, we fetch the lists and calculate lengths
-      const prodRes = await axios.get("http://localhost:5000/api/product/list")
-      const orderRes = await axios.post("http://localhost:5000/api/order/list", {}, { headers: { token } })
-      
-      const orders = orderRes.data.orders || []
-      const revenue = orders.reduce((acc, item) => acc + item.amount, 0)
+    // NOTE: These are placeholder values. Later, you will fetch these from your backend!
+    const stats = {
+        revenue: "1,24,500",
+        orders: "42",
+        products: "128",
+        users: "89"
+    };
 
-      setStats({
-        totalRevenue: revenue,
-        totalOrders: orders.length,
-        totalProducts: prodRes.data.products.length,
-        totalCustomers: [...new Set(orders.map(o => o.userId))].length // Unique User IDs
-      })
-    } catch (error) {
-      console.error("Stats Error:", error)
-    }
-  }
+    const recentOrders = [
+        { id: "ORD-8291", customer: "Vivek Gamit", amount: "4,999", status: "Order Placed", date: "Today, 10:23 AM" },
+        { id: "ORD-8290", customer: "Rahul Sharma", amount: "1,299", status: "Packing", date: "Today, 09:15 AM" },
+        { id: "ORD-8289", customer: "Priya Patel", amount: "8,450", status: "Shipped", date: "Yesterday" },
+        { id: "ORD-8288", customer: "Amit Singh", amount: "500", status: "Delivered", date: "Yesterday" },
+    ];
 
-  useEffect(() => { fetchStats() }, [token])
-
-  const statCards = [
-    { name: 'Total Revenue', value: `₹${stats.totalRevenue}`, icon: <DollarSign className='text-green-600' />, bg: 'bg-green-50' },
-    { name: 'Total Orders', value: stats.totalOrders, icon: <ShoppingCart className='text-blue-600' />, bg: 'bg-blue-50' },
-    { name: 'Inventory Items', value: stats.totalProducts, icon: <Package className='text-orange-600' />, bg: 'bg-orange-50' },
-    { name: 'Active Customers', value: stats.totalCustomers, icon: <Users className='text-purple-600' />, bg: 'bg-purple-50' },
-  ]
-
-  return (
-    <div className='space-y-8'>
-      <div className='flex flex-col'>
-        <h2 className='text-2xl font-bold tracking-tight'>Welcome back, Admin</h2>
-        <p className='text-sm text-gray-400'>Here is what's happening with your store today.</p>
-      </div>
-
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-        {statCards.map((card, index) => (
-          <div key={index} className='bg-white p-6 rounded-2xl border border-gray-100 shadow-sm'>
-            <div className={`w-12 h-12 ${card.bg} rounded-xl flex items-center justify-center mb-4`}>
-              {card.icon}
+    return (
+        <div className="p-8 max-w-7xl mx-auto">
+            
+            <div className="flex justify-between items-end mb-8">
+                <div>
+                    <h1 className="text-3xl font-bold uppercase tracking-tight text-zinc-900">Store Overview</h1>
+                    <p className="text-sm text-zinc-500 mt-1">Here is what's happening with your store today.</p>
+                </div>
             </div>
-            <p className='text-xs font-bold text-gray-400 uppercase tracking-widest'>{card.name}</p>
-            <h3 className='text-2xl font-black mt-1'>{card.value}</h3>
-          </div>
-        ))}
-      </div>
 
-      {/* Placeholder for a simple Recent Activity list */}
-      <div className='bg-white p-6 rounded-2xl border border-gray-100'>
-         <h3 className='font-bold mb-4'>Recent Performance</h3>
-         <div className='h-48 w-full bg-gray-50 rounded-xl border-2 border-dashed border-gray-100 flex items-center justify-center text-gray-300 italic'>
-            Real-time analytics chart will appear here as your sales grow.
-         </div>
-      </div>
-    </div>
-  )
-}
+            {/* --- TOP ROW: KPI CARDS --- */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                {/* Revenue Card */}
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:border-black transition-colors">
+                    <div className="flex justify-between items-start mb-4">
+                        <div className="bg-green-50 p-3 rounded-xl">
+                            <IndianRupee size={24} className="text-green-600" />
+                        </div>
+                        <span className="flex items-center text-xs font-bold text-green-500 bg-green-50 px-2 py-1 rounded-full">
+                            <TrendingUp size={12} className="mr-1" /> +12%
+                        </span>
+                    </div>
+                    <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Total Revenue</p>
+                    <h3 className="text-3xl font-black text-zinc-900">₹{stats.revenue}</h3>
+                </div>
 
-export default Dashboard
+                {/* Orders Card */}
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:border-black transition-colors">
+                    <div className="flex justify-between items-start mb-4">
+                        <div className="bg-blue-50 p-3 rounded-xl">
+                            <Package size={24} className="text-blue-600" />
+                        </div>
+                    </div>
+                    <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Total Orders</p>
+                    <h3 className="text-3xl font-black text-zinc-900">{stats.orders}</h3>
+                </div>
+
+                {/* Products Card */}
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:border-black transition-colors">
+                    <div className="flex justify-between items-start mb-4">
+                        <div className="bg-purple-50 p-3 rounded-xl">
+                            <ShoppingBag size={24} className="text-purple-600" />
+                        </div>
+                    </div>
+                    <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Total Products</p>
+                    <h3 className="text-3xl font-black text-zinc-900">{stats.products}</h3>
+                </div>
+
+                {/* Users Card */}
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:border-black transition-colors">
+                    <div className="flex justify-between items-start mb-4">
+                        <div className="bg-orange-50 p-3 rounded-xl">
+                            <Users size={24} className="text-orange-600" />
+                        </div>
+                    </div>
+                    <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-1">Total Customers</p>
+                    <h3 className="text-3xl font-black text-zinc-900">{stats.users}</h3>
+                </div>
+            </div>
+
+            {/* --- MIDDLE SECTION: RECENT ORDERS --- */}
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+                    <h2 className="text-lg font-bold uppercase tracking-tight">Recent Orders</h2>
+                    <button 
+                        onClick={() => navigate('/orders')}
+                        className="text-xs font-bold text-zinc-500 hover:text-black flex items-center gap-1 uppercase tracking-widest"
+                    >
+                        View All <ArrowRight size={14} />
+                    </button>
+                </div>
+                
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left text-sm text-zinc-600">
+                        <thead className="bg-gray-50 text-xs uppercase tracking-widest font-bold text-zinc-500">
+                            <tr>
+                                <th className="px-6 py-4">Order ID</th>
+                                <th className="px-6 py-4">Customer</th>
+                                <th className="px-6 py-4">Amount</th>
+                                <th className="px-6 py-4">Date</th>
+                                <th className="px-6 py-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-100">
+                            {recentOrders.map((order, index) => (
+                                <tr key={index} className="hover:bg-gray-50 transition-colors">
+                                    <td className="px-6 py-4 font-medium text-zinc-900">{order.id}</td>
+                                    <td className="px-6 py-4">{order.customer}</td>
+                                    <td className="px-6 py-4 font-bold text-zinc-900">₹{order.amount}</td>
+                                    <td className="px-6 py-4 text-xs">{order.date}</td>
+                                    <td className="px-6 py-4">
+                                        <span className={`px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full 
+                                            ${order.status === 'Order Placed' ? 'bg-yellow-50 text-yellow-600' : 
+                                              order.status === 'Shipped' ? 'bg-blue-50 text-blue-600' : 
+                                              order.status === 'Delivered' ? 'bg-green-50 text-green-600' : 
+                                              'bg-zinc-100 text-zinc-600'}`}
+                                        >
+                                            {order.status}
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    );
+};
+
+export default Dashboard;

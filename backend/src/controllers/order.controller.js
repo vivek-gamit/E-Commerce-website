@@ -76,6 +76,31 @@ const userOrders = async (req, res) => {
     }
 }
 
+// API for Admin to get all orders
+const listOrdersAdmin = async (req, res) => {
+    try {
+        // Fetch all orders from the database, sorted by newest first
+        const orders = await orderModel.find({}).sort({ createdAt: -1 });
+        res.json({ success: true, orders });
+    } catch (error) {
+        console.error("Admin List Orders Error:", error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// API for Admin to update order status
+const updateOrderStatus = async (req, res) => {
+    try {
+        const { orderId, status } = req.body;
+
+        await orderModel.findByIdAndUpdate(orderId, { status });
+        
+        res.json({ success: true, message: "Order status updated successfully" });
+    } catch (error) {
+        console.error("Update Status Error:", error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
 
 
-module.exports = { placeOrder, userOrders }
+module.exports = { placeOrder, userOrders, listOrdersAdmin, updateOrderStatus }

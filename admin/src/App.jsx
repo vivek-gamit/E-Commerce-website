@@ -6,13 +6,14 @@ import Sidebar from './components/Sidebar'
 import Add from './pages/Add'
 import List from './pages/List'
 import Orders from './pages/Orders'
-import Login from './pages/Login' // Ensure you create this page
+import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
 import { AuthContext } from '../src/context/authcontext'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
-  // Get token from your AuthContext to check login status
+  // Get token from AuthContext to check login status
   const { token } = useContext(AuthContext);
 
   return (
@@ -40,15 +41,11 @@ const App = () => {
             <div className='flex-1 p-8 bg-gray-50/30 min-h-[calc(100vh-80px)]'>
               <div className='max-w-5xl mx-auto'>
                 <Routes>
-                  <Route path='/' element={<div>Welcome to Admin Dashboard</div>} />
+                  <Route path='/' element={<Dashboard token={token}/> } />
                   <Route path='/add' element={<Add token={token} />} />
                   <Route path='/list' element={<List token={token} />} />
                   <Route path='/orders' element={<Orders token={token} />} />
-
-                  {/* --- ADD THIS LINE --- */}
                   <Route path='/profile' element={<Profile token={token} />} />
-
-                  {/* If user tries to go to /login while logged in, send them home */}
                   <Route path="/login" element={<Navigate to="/" />} />
                 </Routes>
               </div>
