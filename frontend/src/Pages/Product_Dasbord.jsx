@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FaStar, FaHeart } from "react-icons/fa";
+import { FaStar, FaHeart, FaAllergies } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
 import { LuDot } from "react-icons/lu";
 import axios from 'axios';
 import { AuthContext } from '../Context/authContext';
+import { allProducts } from '../assets/assets'
 
 const Product_Dasbord = () => {
     const navigate = useNavigate();
@@ -254,7 +255,7 @@ const Product_Dasbord = () => {
                 <h2 className="text-3xl font-serif italic mb-8 text-zinc-900">Popular Products</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {/* Placeholder for 3 items - map your actual products here later! */}
-                    {[1, 2, 3].map((item) => (
+                    {allProducts.slice(0,3).map((item) => (
                         <div key={item} className="group cursor-pointer">
                             <div className="relative bg-zinc-100 aspect-square mb-4 overflow-hidden">
                                 <div className="absolute top-4 left-4 bg-white px-3 py-1 text-[9px] font-bold uppercase tracking-widest z-10 shadow-sm">
@@ -264,7 +265,7 @@ const Product_Dasbord = () => {
                                     <CiHeart size={18} className="text-zinc-600" />
                                 </button>
                                 {/* Replace with your actual product images */}
-                                <img src={`https://via.placeholder.com/400?text=Product+${item}`} alt="Product" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                <img src={item.mainImg} alt="Product" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                             </div>
                             <div className="flex justify-between items-center px-1">
                                 <h3 className="text-sm font-serif text-zinc-800">Taupe Bag</h3>
