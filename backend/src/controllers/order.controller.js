@@ -88,12 +88,22 @@ const listOrdersAdmin = async (req, res) => {
     }
 };
 
-// API for Admin to update order status
+// Inside your orderController.js
 const updateOrderStatus = async (req, res) => {
     try {
         const { orderId, status } = req.body;
 
-        await orderModel.findByIdAndUpdate(orderId, { status });
+        // NEW LOGIC: If status is Delivered, mark payment as true
+        let paymentStatus = false;
+        if (status === 'Delivered') {
+            paymentStatus = true;
+        }
+
+        // Update both the status AND the payment boolean
+        await orderModel.findByIdAndUpdate(orderId, { 
+            status: status,
+            payment: paymentStatus // It will turn true when Delivered!
+        });
         
         res.json({ success: true, message: "Order status updated successfully" });
     } catch (error) {

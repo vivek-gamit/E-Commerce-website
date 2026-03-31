@@ -24,13 +24,19 @@ const Orders = ({ token }) => {
   const statusHandler = async (event, orderId) => {
     const newStatus = event.target.value;
     try {
-      // Optimistic UI update: instantly change it on screen for a faster feel
+      // Optimistic UI update: instantly change status AND payment on screen
       setOrders(prevOrders => prevOrders.map(order =>
-        order._id === orderId ? { ...order, status: newStatus } : order
+        order._id === orderId ? { 
+            ...order, 
+            status: newStatus,
+            // Automatically flip to Paid (true) if Delivered, otherwise Pending (false)
+            payment: newStatus === 'Delivered' ? true : false 
+        } : order
       ));
 
-      // Updated port to 3000
+      // Send the status update to the backend
       const response = await axios.post("http://localhost:3000/api/order/status", { orderId, status: newStatus }, { headers: { token } })
+      
       if (response.data.success) {
         toast.success("Status Updated")
       } else {
@@ -106,7 +112,7 @@ const Orders = ({ token }) => {
               <div className={`mt-2 inline-block px-2 py-1 rounded text-[10px] font-bold uppercase ${order.payment ? 'bg-green-50 text-green-600' : 'bg-orange-50 text-orange-600'}`}>
                 {order.payment ? 'Paid' : 'Pending'}
               </div>
-              {/* NEW: Display the Order Date */}
+              {/* Display the Order Date */}
               <p className='text-[10px] text-zinc-400 font-bold uppercase mt-3'>
                 {new Date(order.date || order.createdAt).toLocaleDateString()}
               </p>
